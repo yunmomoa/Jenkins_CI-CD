@@ -1,18 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { ApprovalMemoModal } from "./approvalMemoModal";
-import ApprovalOutcheckModal from "./approvalOutcheckModal";
 import { useState } from "react";
 
-export const ApprovalWriteFooter = () => {
+export const ApprovalComfirmFooter = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [outCheckModalOpen, setOutCheckModalOpen] = useState(false);
     const navigate = useNavigate();
     
-    const handleExit = () => {
-        navigate('/approvalMain/ApprovalWriteDetailPage');
-    };
-
     return (
         <footer
             style={{
@@ -24,7 +18,7 @@ export const ApprovalWriteFooter = () => {
                 gap: "700px", // ✅ 그룹 사이 간격 조정
             }}
         >
-            {/* 임시저장 버튼 */}
+            {/* 목록 버튼 */}
             <div>
                 <button
                     style={{
@@ -41,13 +35,13 @@ export const ApprovalWriteFooter = () => {
                         alignItems: "center",
                         justifyContent: "center",
                     }}
-                    onClick={() => navigate('/approvalMain/ApprovalWriteDetailPage')}
+                    onClick={() => navigate('/approvalMain')}
                 >
-                    임시저장
+                    목록
                 </button>
             </div>
 
-            {/* 결재 & 취소 버튼 그룹 */}
+            {/* 승인 & 반려 버튼 그룹 */}
             <div style={{ display: "flex", gap: "10px" }}> {/* ✅ 버튼 간격 유지 */}
                 <button
                     style={{
@@ -66,11 +60,12 @@ export const ApprovalWriteFooter = () => {
                     }}
                     onClick={() => setModalOpen(true)}
                 >
-                    결재상신
+                    승인
                 </button>
 
                 {/*모달 창*/}
                 {modalOpen && <ApprovalMemoModal onClose={() => setModalOpen(false)} />}
+
 
                 <button
                     style={{
@@ -87,19 +82,10 @@ export const ApprovalWriteFooter = () => {
                         alignItems: "center",
                         justifyContent: "center",
                     }}
-                    onClick={() => setOutCheckModalOpen(true)}
+                    //onClick={() => navigate('/approvalMain/ApprovalWriteDetailPage')}
                 >
-                    결재취소
+                    반려
                 </button>
-
-                {/* 결재취소 확인 모달 */}
-                {outCheckModalOpen && (
-                    <ApprovalOutcheckModal 
-                        onClose={() => setOutCheckModalOpen(false)}
-                        onGoBack={() => setOutCheckModalOpen(false)}
-                        onExit={handleExit}
-                    />
-                )}
             </div>
         </footer>
     );

@@ -1,12 +1,13 @@
 
-import { ApprovalFooter } from '../components/approval/approvalFooter';
 import { ApprovalHeader } from '../components/approval/approvalHeader';
-import { ApprovalPost } from '../components/approval/approvalPost';
 import { ApprovalSearchBar } from '../components/approval/approvalSearchBar';
+import { ApprovalTempBody } from '../components/approval/approvalTempBody';
+import { ApprovalTempFooter } from '../components/approval/approvalTempFooter';
 import Header from '../components/common/Header';
 import Sidebar from '../components/common/Sidebar';
 
-export const ApprovalMain = () => {
+
+export const ApprovalTempPage = () => {
 
   return (
     <div className="mainpageContainer">
@@ -16,8 +17,8 @@ export const ApprovalMain = () => {
         <div className="componentContainer1">
           <ApprovalHeader />
           <ApprovalSearchBar />
-          <ApprovalPost />
-          <ApprovalFooter />
+          <ApprovalTempBody />
+          <ApprovalTempFooter />
         </div>
       </div>
     </div>
