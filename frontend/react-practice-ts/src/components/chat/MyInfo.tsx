@@ -1,9 +1,8 @@
 import profileBig from "../../assets/Images/chat/profileBig.png";
 import chatBig from "../../assets/Images/chat/chatBig.png";
-import bell from "../../assets/Images/chat/bell.png";
-import starBig from "../../assets/Images/chat/starBig.png";
+import edit from "../../assets/Images/chat/edit.png";
 
-type Member = {
+type MyInfo = {
   name: string;
   dept: string;
   position: string;
@@ -12,15 +11,15 @@ type Member = {
   extension: string;
 };
 
-type MemberInfoProps = {
-  member: Member;
-  onClose: () => void; // 닫기 버튼 이벤트 핸들러 추가
+type MyInfoProps = {
+  myinfo: MyInfo;
+  onClose: () => void; 
 };
 
-const MemberInfo = ({ member, onClose }: MemberInfoProps) => {
+const MyInfo = ({ myinfo, onClose }: MyInfoProps) => {
   return (
     <div
-      className="meminfo"
+      className="myinfo"
       style={{
         width: 300,
         height: 500,
@@ -65,12 +64,12 @@ const MemberInfo = ({ member, onClose }: MemberInfoProps) => {
 
       <div style={{ marginTop: 35, paddingLeft: 0, paddingRight: 16}}>
         {[
-          { label: "이름", value: member.name },
-          { label: "부서", value: member.dept},
-          { label: "직급", value: member.position },
-          { label: "이메일", value: member.email },
-          { label: "연락처", value: member.phone },
-          { label: "내선번호", value: member.extension },
+          { label: "이름", value: myinfo.name },
+          { label: "부서", value: myinfo.dept},
+          { label: "직급", value: myinfo.position },
+          { label: "이메일", value: myinfo.email },
+          { label: "연락처", value: myinfo.phone },
+          { label: "내선번호", value: myinfo.extension },
         ].map((item, index) => (
           <div key={index} style={{ display: "flex", marginBottom: 15 }}>
             <div
@@ -100,12 +99,12 @@ const MemberInfo = ({ member, onClose }: MemberInfoProps) => {
 
       <div style={{
         display: 'flex',
-        gap : "25px",
+        gap : "35px",
         paddingTop: "35px",
-        marginLeft: "15px",
+        marginLeft: "27px",
         position: "relative"
     }}>
-        {/* 1:1 채팅 */}
+        {/* 나와의 채팅 */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <img className="chatBig" style={{ width: 28, height: 28 }} src={chatBig} alt="chat icon" />
         <span style={{
@@ -113,38 +112,24 @@ const MemberInfo = ({ member, onClose }: MemberInfoProps) => {
             fontFamily: 'Inter',
             fontWeight: '600',
             marginTop: '4px'
-        }}
-        //onClick={} // 여기 수정하기()
-        >1:1 채팅</span>
+        }}>나와의 채팅</span>
         </div>
 
-        {/* 알림 설정 */}
+        {/* 이미지 수정 */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <img className="bellBig" style={{ width: 28, height: 28 }} src={bell} alt="alarm icon" />
+        <img className="edit" style={{ width: 28, height: 28 }} src={edit} alt="edit icon" />
         <span style={{
             fontSize: '14px',
             fontFamily: 'Inter',
             fontWeight: '600',
             marginTop: '4px'
-        }}
-        
-        >알림 설정</span>
+        }}>이미지 수정</span>
         </div>
 
-        {/* 즐겨찾기 */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <img className="starBig" style={{ width: 28, height: 28 }} src={starBig} alt="favorite icon" />
-        <span style={{
-            fontSize: '14px',
-            fontFamily: 'Inter',
-            fontWeight: '600',
-            marginTop: '4px'
-        }}>즐겨찾기</span>
-        </div>
     </div>
 
     </div>
   );
 };
 
-export default MemberInfo;
+export default MyInfo;
