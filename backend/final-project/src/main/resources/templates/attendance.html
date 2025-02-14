@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>조직도</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            background-color: #f8f9fc;
+            width: 80%;
+	        margin: auto;
+	           padding: 20px;
+        }
+
+        /* 왼쪽 사이드바 */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            height: 100vh;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 8px;
+        }
+        .search-box button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .department-list {
+            list-style: none;
+        }
+        .department-list li {
+            padding: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .department-list ul:hover {
+            cursor: pointer;
+        }
+        .department-list li:hover {
+            font-weight: bold;
+        }
+        .department-list ul ul {
+            display: none;
+        }
+
+        .department-list li:hover > ul {
+            display: block;
+        }
+        .add-employee {
+            display: block;
+            margin-top: 20px;
+            color: #4880FF;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: white;
+            border: none;
+            margin-left: 70%;
+        }
+
+        /* 오른쪽 프로필 영역 */
+        .profile-container {
+            flex-grow: 1;
+            margin-left: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            text-align: center;
+        }
+        .profile-card {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            max-width: 400px;
+            text-align: center;
+        }
+        .profile-card p {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+        .profile-card span {
+            font-weight: bold;
+        }
+        .chat-button {
+            display: block;
+            width: 100px;
+            padding: 10px;
+            margin: 10px auto;
+            background: #4880FF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .chat-button:hover {
+            background: #2a5bbf;
+        }
+        /* 모달 창 기본 스타일 */
+        #modal {
+            display: none;
+            width: 350px;
+            height: 450px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            z-index: 1000;
+            border: 1px solid #B9B9B9;
+        }
+
+        .modal-content {
+            position: relative;
+        }
+
+        /* 닫기 버튼 스타일 */
+        .close-btn {
+            position: absolute;
+            top: 0px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* 입력 필드 스타일 */
+        .input-field {
+            width: 70%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #B9B9B9;
+            border-radius: 8px;
+        }
+        [name="userName"], 
+        [name="teamName"], 
+        [name="positionName"]{
+            margin-left: 25px;
+        }
+        [name="phone"], 
+        [name="email"]{
+            margin-left: 16px;
+        }
+
+        /* 저장 버튼 스타일 */
+        .save-btn {
+            display: block;  /* 블록 요소로 변경 */
+            width: 40%;  /* 버튼 너비를 조정 (선택 사항) */
+            margin: 20px auto 0;  /* 위쪽 여백 유지, 좌우 자동 정렬 */
+            padding: 10px 20px;
+            background: #4880FF;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;  /* 텍스트 중앙 정렬 */
+        }
+
+        /* 배경 오버레이 */
+        #modalOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 왼쪽 부서/팀 목록 -->
+    <div class="sidebar">
+        <div class="search-box">
+            <input type="text" placeholder="부서 / 팀">
+            <button>🔍</button>
+        </div>
+        <ul class="department-list">
+            <li><b>Workly</b></li>
+            <br>
+            <ul>
+                <span class="team-name" onclick="toggleTeam('hr-team')">인사팀</span>
+                <ul id="hr-team" style="display: none;">
+                    <li>최윤성 팀장</li>
+                    <li>최윤성 팀장</li>
+                </ul>
+            </ul>
+        </ul>
+        
+        <button class="add-employee" id="openModalBtn">+ 사원 추가</button>
+    </div>
+    
+    <script>
+        function toggleTeam(id) {
+            var team = document.getElementById(id);
+            if (team.style.display === "none") {
+                team.style.display = "block";
+            } else {
+                team.style.display = "none";
+            }
+        }
+    </script>
+     <!-- 모달 창 -->
+     <div id="modal">
+        <div class="modal-content">
+            <h2>사원 추가</h2>
+            <br>
+            <!-- 닫기 버튼 -->
+            <div id="closeModalBtn" class="close-btn">
+                <svg width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M36 12L12 36M12 12L36 36" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <!-- 이름 입력 -->
+            <label for="userName">이 름</label>
+            <input type="text" name="userName" class="input-field">
+            <br>
+            <!-- 팀명 입력 -->
+            <label for="teamName">팀 명</label>
+            <input type="text" name="teamName" class="input-field">
+            <br>
+            <!-- 직책 입력 -->
+            <label for="positionName">직 책</label>
+            <input type="text" name="positionName" class="input-field">
+            <br>
+            <!-- 연락처 입력 -->
+            <label for="phone">연락처</label>
+            <input type="text" name="phone" class="input-field">
+            <br>
+            <!-- 이메일 입력 -->
+            <label for="email">이메일</label>
+            <input type="text" name="email" class="input-field">
+            <br>
+            <!-- 내선번호 입력 -->
+            <label for="extension">내선번호</label>
+            <input type="text" name="extension" class="input-field">
+            <br>
+            <!-- 저장 버튼 -->
+            <button id="saveTeamBtn" class="save-btn">저장하기</button>
+        </div>
+    </div>
+
+    <!-- 배경 오버레이 (모달 바깥 클릭 시 닫힘) -->
+    <div id="modalOverlay"></div>
+    <!-- 팀추가 모달창-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const modal = document.getElementById("modal");
+    const modalOverlay = document.getElementById("modalOverlay");
+
+    // 모달 열기
+    openModalBtn.addEventListener("click", function() {
+        modal.style.display = "block";
+        modalOverlay.style.display = "block";
+    });
+
+    // 모달 닫기
+    closeModalBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+        modalOverlay.style.display = "none";
+    });
+
+    // 오버레이 클릭 시 모달 닫기
+    modalOverlay.addEventListener("click", function() {
+        modal.style.display = "none";
+        modalOverlay.style.display = "none";
+    });
+});
+    </script>
+
+    <!-- 오른쪽 직원 프로필 -->
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="프로필" width="100">
+        </div>
+        <div class="profile-card">
+            <h3>인사팀 / 팀장</h3>
+            <h2>최 윤 성</h2>
+            <br>
+            <p><span>연락처</span> | 010-0000-0000</p>
+            <p><span>이메일</span> | aaaa@gmail.com</p>
+            <p><span>내선번호</span> | 168</p>
+            <button class="chat-button">채팅하기</button>
+        </div>
+    </div>
+
+</body>
+</html>
