@@ -12,7 +12,6 @@
     width: 40%;
     text-align: center;
     overflow: hidden;
-
 }
 
 .profileImage {
@@ -30,6 +29,7 @@
 }
 
 .changeProfile:hover {
+
     color:#848484
 }
 
@@ -57,7 +57,7 @@
     display: flex;
     width: 70%;
     flex-direction: column;
-    gap: 15px;
+    gap: 9px;
     margin: auto;
 }
 
@@ -120,15 +120,4 @@
 
 .cancleButton:hover {
     background-color: #e0e0e0;
-}
-/* 모든 브라우저 input type number 태그 숫자 증감버튼 지우기 */
-input[type="number"] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
