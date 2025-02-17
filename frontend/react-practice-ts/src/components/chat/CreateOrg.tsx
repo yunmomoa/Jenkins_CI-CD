@@ -1,31 +1,23 @@
 import { useState } from 'react';
-import chatIcon from "../../assets/Images/chat/chatBiggest.png";
-import group from "../../assets/Images/chat/groupChat.png";
-import searchIcon from "../../assets/Images/chat/search.png"; // 🔍 검색 아이콘 이미지 임포트 (파일경로는 네 프로젝트에 맞게 수정해)
+import searchIcon from "../../assets/Images/chat/search.png"; 
 
-const ChatCreate = ({
-  invitePeople,
+const CreateOrg = ({
   onClose,
+  invitePeople
 }: {
-  invitePeople: (chatType: string, chatName: string) => void;
+  invitePeople: (deptName: string) => void;
   onClose: () => void;
 }) => {
-  const [chatType, setChatType] = useState<'1:1' | '그룹' | ''>('');
-  const [chatName, setChatName] = useState('');
+  const [deptName, setDeptName] = useState('');
   
-
   const handleInviteClick = () => {
-    if (!chatType) {
-      alert('채팅 종류를 선택해주세요!');
-      return;
-    }
-    console.log("ChatCreate - handleInviteClick 실행됨!", chatType, chatName); // ✅ 확인용 로그 추가
-    invitePeople(chatType, chatName);
-  };
+    console.log("부서 생성 단계 진입");
+    invitePeople(deptName); // SearchMember 단계로 넘기기
+  };  
 
   return (
     <div
-      className="ChatCreate"
+      className="DeptCreate"
       style={{
         width: 390,
         height: 600,
@@ -34,7 +26,7 @@ const ChatCreate = ({
     >
       {/* 배경 */}
       <div
-        className="ChatCreate-Background"
+        className="DeptCreate-Background"
         style={{
           width: 390,
           height: 600,
@@ -47,7 +39,7 @@ const ChatCreate = ({
       />
       {/* 헤더 배경 */}
       <div
-        className="ChatCreate-HeaderBackground"
+        className="DeptCreate-HeaderBackground"
         style={{
           width: 390,
           height: 170.18,
@@ -59,7 +51,7 @@ const ChatCreate = ({
         }}
       />
       <div
-        className="ChatCreate-TitleWrapper"
+        className="DeptCreate-TitleWrapper"
         style={{
           width: 95,
           height: 19.64,
@@ -75,7 +67,7 @@ const ChatCreate = ({
         }}
       >
         <div
-          className="ChatCreate-TitleText"
+          className="DeptCreate-TitleText"
           style={{
             width: 88.84,
             color: "#4880FF",
@@ -85,7 +77,7 @@ const ChatCreate = ({
             wordWrap: "break-word",
           }}
         >
-          New Chat
+          New Dept
         </div>
         {/* 닫기 버튼 */}
         <button
@@ -103,73 +95,11 @@ const ChatCreate = ({
         </button>
       </div>
 
-      {/* 1:1 채팅 */}
-      <div
-        onClick={() => setChatType('1:1')}
-        style={{
-          position: "absolute",
-          top: "60px",
-          left: "110px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-      >
-        <img
-          className="chat"
-          style={{ width: "60px", height: "60px" }}
-          src={chatIcon}
-          alt="1:1 채팅 아이콘"
-        />
-        <span
-          style={{
-            marginTop: "8px",
-            fontSize: "14px",
-            fontFamily: "Inter",
-            fontWeight: "600",
-            color: "#202224",
-          }}
-        >
-          1:1 채팅
-        </span>
-      </div>
+      
 
-      {/* 그룹 채팅 */}
+      {/* 부서 정보 설정 카드 */}
       <div
-        onClick={() => setChatType('그룹')}
-        style={{
-          position: "absolute",
-          top: "60px",
-          left: "230px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-      >
-        <img
-          className="group-chat"
-          style={{ width: "60px", height: "60px" }}
-          src={group}
-          alt="그룹 채팅 아이콘"
-        />
-        <span
-          style={{
-            marginTop: "8px",
-            fontSize: "14px",
-            fontFamily: "Inter",
-            fontWeight: "600",
-            color: "#202224",
-          }}
-        >
-          그룹 채팅
-        </span>
-      </div>
-
-      {/* 채팅방 정보 설정 카드 */}
-      <div
-        className="ChatCreate-InfoCard"
+        className="DeptCreate-InfoCard"
         style={{
           width: 300,
           height: 190,
@@ -184,7 +114,7 @@ const ChatCreate = ({
 
       {/* 카드 헤더 (파란색) */}
       <div
-        className="ChatCreate-InfoHeader"
+        className="DeptCreate-InfoHeader"
         style={{
           width: 300,
           height: 29.45,
@@ -197,7 +127,7 @@ const ChatCreate = ({
         }}
       />
       <div
-        className="ChatCreate-InfoHeaderText"
+        className="DeptCreate-InfoHeaderText"
         style={{
           position: "absolute",
           left: 68,
@@ -208,10 +138,10 @@ const ChatCreate = ({
           fontWeight: "600",
         }}
       >
-        채팅방 정보설정
+        부서 정보설정
       </div>
 
-      {/* 채팅방 이름 레이블 */}
+      {/* 부서 이름 레이블 */}
       <div
         style={{
           position: "absolute",
@@ -223,15 +153,15 @@ const ChatCreate = ({
           color: "#979797",
         }}
       >
-        채팅방 이름
+        부서 이름
       </div>
 
-      {/* 채팅방 이름 입력란 */}
+      {/* 부서 이름 입력란 */}
       <input
         type="text"
-        placeholder="방 이름을 입력하세요"
-        value={chatName}
-        onChange={(e) => setChatName(e.target.value)}
+        placeholder="부서 이름을 입력하세요"
+        value={deptName}
+        onChange={(e) => setDeptName(e.target.value)}
         style={{
           position: "absolute",
           left: 73,
@@ -244,7 +174,7 @@ const ChatCreate = ({
         }}
       />
 
-      {/* 대화상대 초대 레이블 */}
+      {/* 사원 추가 레이블 */}
       <div
         onClick={handleInviteClick}
         style={{
@@ -258,10 +188,10 @@ const ChatCreate = ({
           cursor: "pointer",
         }}
       >
-        대화상대 초대
+        사원 이름을 입력하세요
       </div>
 
-      {/* 대화상대 초대 클릭 영역 */}
+      {/* 사원 추가 클릭 영역 */}
       <div
         style={{
           cursor: "pointer",
@@ -292,4 +222,4 @@ const ChatCreate = ({
   );
 };
 
-export default ChatCreate;
+export default CreateOrg;
