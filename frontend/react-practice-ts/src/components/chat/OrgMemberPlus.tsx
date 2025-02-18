@@ -1,5 +1,5 @@
-import SearchClick from './SearchClick';
 import { useState } from 'react';
+import SearchClick from './SearchClick';
 
 interface Member {
   no: number;
@@ -8,19 +8,12 @@ interface Member {
   team: string;
 }
 
-const SearchMember = ({
-  chatType,
-  chatName,
-  onComplete,
-}: {
-  chatType: string;
-  chatName: string;
-  onComplete: (newChatRoom: {
-    chatName: string;
-    chatType: string;
-    selectedMembers: Member[];
-  }) => void;
-}) => {
+interface OrgMemberPlusProps {
+  deptName: string; // ✅ 추가
+  onComplete: (result: { deptName: string; selectedMembers: Member[] }) => void;
+}
+
+const OrgMemberPlus = ({ deptName, onComplete }: OrgMemberPlusProps) => {
   const [checkedMembers, setCheckedMembers] = useState<number[]>([]);
 
   const members: Member[] = [
@@ -37,27 +30,21 @@ const SearchMember = ({
   ];
 
   const toggleCheck = (no: number) => {
-    if (chatType === '1:1') {
-      setCheckedMembers((prev) => (prev.includes(no) ? [] : [no]));
-    } else {
-      setCheckedMembers((prev) =>
-        prev.includes(no) ? prev.filter((memberNo) => memberNo !== no) : [...prev, no]
-      );
-    }
+    setCheckedMembers((prev) =>
+      prev.includes(no) ? prev.filter((memberno) => memberno !== no) : [...prev, no]
+    );
   };
 
   const handleConfirm = () => {
     if (checkedMembers.length === 0) {
-      alert('대화 상대를 선택해주세요');
+      alert('부서원을 선택해주세요');
       return;
     }
 
-    alert('채팅방 생성 완료되었습니다.');
-
     const selectedMembers = members.filter((m) => checkedMembers.includes(m.no));
 
-    // 부모 컴포넌트로 새 방 정보 전달
-    onComplete({ chatName, chatType, selectedMembers });
+    alert(`부서 생성 완료: ${deptName}`);
+    onComplete({ deptName, selectedMembers }); // ✅ deptName 반영됨
   };
 
   const groupedMembers = members.reduce<Record<string, Member[]>>((acc, member) => {
@@ -93,20 +80,15 @@ const SearchMember = ({
           borderRadius: '3px 3px 0 0',
         }}
       >
-        <span style={{ color: '#4880FF', fontWeight: '800', fontSize: '18px' }}>사용자 검색</span>
+        <span style={{ color: '#4880FF', fontWeight: '800', fontSize: '18px' }}>부서원 선택</span>
       </div>
 
       <div style={{ margin: '10px 45px' }}>
         <SearchClick />
       </div>
 
-      <div style={{ overflowY: 'auto', maxHeight: '440px', paddingLeft: '30px' }}>
-        <table
-          style={{
-            width: '90%',
-            borderCollapse: 'collapse',
-          }}
-        >
+      <div style={{ overflowY: 'auto', maxHeight: '500px', paddingLeft: '30px' }}>
+        <table style={{ width: '90%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ backgroundColor: 'white', borderBottom: '2px solid #4880FF' }}>
               <th style={{ width: '45%', color: '#4880FF', padding: '8px 0', textAlign: 'center' }}>
@@ -137,7 +119,7 @@ const SearchMember = ({
                         style={{
                           position: 'absolute',
                           bottom: 0,
-                          right: '-17px', // 50%가 아니라 세로 구분선에 딱 맞게
+                          right: '-17px',
                           left: 0,
                           height: '1px',
                           backgroundColor: '#D8D8D8',
@@ -161,7 +143,6 @@ const SearchMember = ({
                       />
                       {member.name} {member.position}
                     </div>
-                    {/* 세로 구분선 */}
                     <div
                       style={{
                         position: 'absolute',
@@ -172,12 +153,11 @@ const SearchMember = ({
                         backgroundColor: '#D8D8D8',
                       }}
                     />
-                    {/* 이름쪽 가로 구분선 시작 위치 조정 */}
                     <div
                       style={{
                         position: 'absolute',
                         bottom: 0,
-                        left: '17px', // 세로 구분선에 딱 맞게 조정
+                        left: '17px',
                         right: 0,
                         height: '1px',
                         backgroundColor: '#D8D8D8',
@@ -191,11 +171,9 @@ const SearchMember = ({
         </table>
       </div>
 
-      {/* 확인 버튼 복구 */}
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
         <button
           style={{
-            marginTop: '10px',
             backgroundColor: '#4880FF',
             color: 'white',
             fontWeight: '600',
@@ -204,7 +182,6 @@ const SearchMember = ({
             padding: '8px 16px',
             cursor: 'pointer',
           }}
-          //onClick={() => console.log('선택된 멤버:', checkedMembers)}
           onClick={handleConfirm}
         >
           확인
@@ -214,4 +191,4 @@ const SearchMember = ({
   );
 };
 
-export default SearchMember;
+export default OrgMemberPlus;
