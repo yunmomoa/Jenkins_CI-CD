@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Position {
-	private int positionNo;
-	private String positionName;
+public class CategoryFilter {
+	private String deptNo;
+	private String positionNo;
+	private String status;
+	private String name;
 }
