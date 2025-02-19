@@ -1,16 +1,19 @@
 package com.workly.final_project.chat.model.vo;
 
 import lombok.AllArgsConstructor;
-import java.time.LocalDate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class ChatRoom {
+@NoArgsConstructor
+public class ChatParticipant {
 
 	private int chatRoomNo;
-	private LocalDate createChat;
+	private int userNo;
 	private String roomName;
+	private LocalDate enterDate;
+	private String bellSetting;
+	
 }
