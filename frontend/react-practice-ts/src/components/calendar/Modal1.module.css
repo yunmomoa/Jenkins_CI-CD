@@ -1,5 +1,5 @@
 /* ✅ 모달 오버레이 - 화면 전체 덮기 */
-.modalOverlay {
+.modal1Overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
 }
 
 /* ✅ 모달 컨테이너 */
-.modalContainer {
+.modal1Container {
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -25,48 +25,32 @@
   gap: 15px;
 }
 
-/* ✅ 탭 버튼 스타일 */
-.modalContainer .tabContainer {
-  display: flex;
-  justify-content: space-between;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 5px;
+/* ✅ 모달 제목 */
+.modal1Title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.modalContainer .tabButton {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  background: none;
-  font-size: 14px;
-}
-
-.modalContainer .active {
-  background: #4c93ff;
-  color: white;
-  border-radius: 8px;
-}
-
-/* ✅ 입력 폼 스타일 */
-.modalContainer .formGroup {
+/* ✅ 입력 폼 그룹 */
+.formGroup {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 10px;
   width: 100%;
 }
 
-.modalContainer .formGroup label {
+.formGroup label {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* ✅ 입력 필드 */
-.modalContainer input,
-.modalContainer textarea {
+/* ✅ 입력 필드 스타일 */
+input,
+textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -74,30 +58,30 @@
   font-size: 14px;
 }
 
-.modalContainer textarea {
+textarea {
   resize: none;
-  height: 80px;
+  height: 60px;
 }
 
-/* ✅ 날짜 지정 - 중앙 정렬 */
-.modalContainer .dateGroup {
+/* ✅ 날짜 선택 스타일 */
+.dateGroup {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
   width: 100%;
 }
 
-.modalContainer .dateGroup input {
-  flex: 1;
+.dateGroup input {
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 5px;
   text-align: center;
+  font-size: 14px;
+  width: 100%;
 }
 
 /* ✅ 시간 지정 */
-.modalContainer .timeGroup {
+.timeGroup {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -106,25 +90,39 @@
 }
 
 /* ✅ 시간 입력 필드 스타일 */
-.modalContainer .timeGroup input {
+.timeGroup input {
   flex: 1;
-  padding: 12px;
+  padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 5px;
   font-size: 14px;
   text-align: center;
+  background-color: white;  /* ✅ 배경색을 하얀색으로 변경 */
   width: 100%;
 }
 
-/* ✅ 시간 라벨 스타일 */
-.modalContainer .timeGroup span {
-  font-size: 14px;
-  font-weight: bold;
+/* ✅ 시간 아이콘 버튼 스타일 (하얀색 배경 적용) */
+.timeGroup input::-webkit-datetime-edit {
+  background-color: white;  /* ✅ 크롬에서 하얀색 유지 */
   color: #333;
 }
 
+.timeGroup input::-webkit-calendar-picker-indicator {
+  background-color: white;  /* ✅ 아이콘 버튼 배경을 하얀색으로 변경 */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ✅ 시간 라벨 스타일 */
+.timeGroup span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+}
+
 /* ✅ 색상 선택 */
-.modalContainer .colorPicker {
+.colorPicker {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,29 +131,29 @@
   width: 100%;
 }
 
-.modalContainer .colorButton {
-  width: 28px;
-  height: 28px;
+.colorButton {
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
   border: 2px solid transparent;
   transition: all 0.2s ease-in-out;
 }
 
-.modalContainer .colorButton.selected {
+.colorButton.selected {
   border: 2px solid #000;
 }
 
 /* ✅ 버튼 스타일 */
-.modalContainer .buttonGroup {
+.buttonGroup {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 10px;
 }
 
-/* ✅ "일정 삭제" 버튼 - 빨간 테두리 & 글씨 */
-.modalContainer .deleteButton {
+/* ✅ 예약 삭제 버튼 스타일 (빨간색) */
+.deleteButton {
   background: white;
   color: #ff6b6b;
   padding: 10px 15px;
@@ -165,9 +163,9 @@
   cursor: pointer;
 }
 
-/* ✅ "일정 등록/수정" 버튼 - 파란색 */
-.modalContainer .saveButton {
-  background: #4c93ff;
+/* ✅ 예약 수정 버튼 스타일 (파란색) */
+.saveButton {
+  background: #4C93FF;
   color: white;
   padding: 10px 15px;
   border-radius: 5px;
@@ -176,8 +174,8 @@
   cursor: pointer;
 }
 
-/* ✅ "취소" 버튼 - 원래대로 */
-.modalContainer .cancelButton {
+/* ✅ 취소 버튼 스타일 (회색) */
+.cancelButton {
   background: #f5f5f5;
   padding: 10px 15px;
   border-radius: 5px;
