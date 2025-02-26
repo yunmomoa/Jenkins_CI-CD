@@ -1,12 +1,12 @@
 import ApprovalCompleteDocument from "../../components/approval/approvalCompleteDocument";
-import { ApprovalConfirmFooter } from "../../components/approval/approvalConfirmFooter";
 import { ApprovalCompleteHeader } from "../../components/approval/approvalCompleteHeader";
 import ApprovalCompleteReply from "../../components/approval/approvalCompleteRply";
 
 import Header from "../../components/common/Header";
 import Sidebar from "../../components/common/Sidebar";
+import { ApprovalCompleteFooter2 } from "../../components/approval/approvalCompleteFooter2";
 
-export const ApprovalConfirmPage = () => {
+export const ApprovalCompletePage2 = () => {
   return (
     <div className="mainpageContainer">
       <Sidebar />
@@ -16,7 +16,7 @@ export const ApprovalConfirmPage = () => {
           <ApprovalCompleteHeader />
           <ApprovalCompleteDocument />
           <ApprovalCompleteReply />
-          <ApprovalConfirmFooter />
+          <ApprovalCompleteFooter2 />
         </div>
       </div>
     </div>
@@ -30,4 +30,4 @@ const scrollableContentStyle = {
   paddingRight: "10px", // ✅ 스크롤바 공간 확보
 };
 
-export default ApprovalConfirmPage;
+export default ApprovalCompletePage2;

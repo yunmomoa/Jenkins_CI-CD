@@ -5,7 +5,7 @@ import axios from "axios";
 import { format, addHours } from "date-fns";
 import { ko } from "date-fns/locale";
 
-export const ApprovalFinishPost = () => {
+export const ApprovalSendPost = () => {
 
   // 로그인한 유저의 userNO
   const userNo = useSelector((state: any) => state.user.userNo);
@@ -15,14 +15,15 @@ export const ApprovalFinishPost = () => {
   useEffect(() => {
     const fetchApprovalPosts = async () => {
       try{
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/finishList/${userNo}`);
+        const response = await axios.get(`http://localhost:8003/workly/api/approval/sendList/${userNo}`);
 
-        // 필터링: userNo가 포함된 결재라인 + 진행 중(STATUS=2)인 항목만
+        // 필터링: userNo가 포함된 결재라인 + 진행 중(STATUS=1)인 항목만
         const filterdPosts = response.data.filter((post: any) => post.approvalStatus === 2)
                                         .map((post: any) => ({
                                           ...post,
                                           startDate: formatKST(post.startDate) // ✅ 한국시간 변환 적용
                                         }));
+
 
         setPosts(filterdPosts); 
       } catch (error) {
@@ -79,7 +80,7 @@ export const ApprovalFinishPost = () => {
           ) : (
             <tr>
               <td colSpan={7} style={emptyRowStyle}>
-                완료된 결재 리스트가 없습니다.
+                수신된 결재 리스트가 없습니다.
               </td>
             </tr>
           )}
@@ -133,7 +134,7 @@ const getStatusStyle = (status: number) => {
 
   switch (status) {
     case 2:
-      return { ...baseStyle, background: "#4c93ff", color: "white" };
+      return { ...baseStyle, background: "#3E7BE6", color: "white" };
     case 1:
       return { ...baseStyle, background: "#ffa500", color: "white" };
     case 3:
