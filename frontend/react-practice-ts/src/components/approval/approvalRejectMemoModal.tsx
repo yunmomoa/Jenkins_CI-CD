@@ -2,34 +2,24 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
+export const ApprovalRejectMemoModal = ({ onClose, onSave, approvalNo }) => {
 
   const userNo = useSelector((state: any) => state.user.userNo);
   console.log("footer에서 받은 approvalNo값:", approvalNo);
   const [memoContent, setMemocontent] = useState("");
   const navigate = useNavigate();
 
-  const handleApprove = async () => {
+  const handleReject = async () => {
     try{
-      // 1. 결재 승인 요청(STATUS 변경)
-      const approvalResponse = await axios.post("http://localhost:8003/workly/api/approval/approve", {
-        approvalNo: approvalNo,
-        userNo: userNo,
+      // 1. 반려 처리 요청(APPROVAL + APPROVAL_LINE 상태 변경)
+      await axios.post("http://localhost:8003/workly/api/approval/reject", null,{
+        params: {
+            approvalNo: approvalNo,
+            userNo: userNo,
+        }
       })
 
-      // 2. 현재 사용자가 마지막 결재자인지 확인
-      const checkFinalApprover = await axios.get(`http://localhost:8003/workly/api/approval/checkFinalApprover`, {
-        params: {approvalNo: approvalNo},
-      })
-
-      if (checkFinalApprover.data.isFinalApprover){ // 1이면 최종 승인자
-        // 3. 마지막 결재자라면 'APPROVAL_STATUS' 변경 및 'END_DAT' 설정
-        await axios.post("http://localhost:8003/workly/api/approval/updateFinalApproval", {
-          approvalNo: approvalNo,
-        });
-      }
-
-      // 4. 메모 저장 요청 (userNo 업데이트 후 실행)
+      // 2. 메모 저장 요청 (userNo 업데이트 후 실행)
       setTimeout(async () => {
         if (memoContent.trim() !== "") {
           const memoResponse = await axios.post("http://localhost:8003/workly/api/approvalMemos/create", {
@@ -37,12 +27,13 @@ export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
             userNo: userNo, // 이제 정상적으로 값이 들어감
             memoContent: memoContent,
           });
-          alert("결재 의견이 저장되었습니다.");
         }
 
-        // 5. 결재 완료 후 이동
+        alert("결재 문서가 반려되었습니다.");
+
+        // 3. 반려 완료 후 이동
         onSave(memoContent);
-        navigate(`/ApprovalCompletePage2/${approvalNo}`);
+        navigate(`/ApprovalRejectpage`);
         setTimeout(() => {
           window.location.reload();
         });
@@ -50,8 +41,8 @@ export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
       }, 100); // 100ms(0.1초) 지연 후 실행
 
     } catch (error) {
-      console.error("승인 또는 메모 저장 실패:", error);
-      alert("결재 처리리 중 오류가 발생했습니다.");
+      console.error("반려 또는 메모 저장 실패:", error);
+      alert("반려 처리 중 오류가 발생했습니다.");
     }
   };
 
@@ -117,7 +108,7 @@ export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
             marginBottom: "15px",
           }}
         >
-          결재의견
+          반려사유
         </div>
         {/* 내용 타이틀 */}
         <div
@@ -132,7 +123,7 @@ export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
         <textarea
           value={memoContent}
           onChange={(e) => setMemocontent(e.target.value)}
-          placeholder="결재의견을 입력하세요"
+          placeholder="반려사유를 입력하세요"
           style={{
             width: "100%",
             height: "100px", // :흰색_확인_표시: 입력 필드 크기 조정
@@ -150,7 +141,7 @@ export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
           style={{
             width: "100%", // :흰색_확인_표시: 버튼 크기 조정
             height: "40px",
-            background: "#4880FF",
+            background: "#ff6b6b",
             borderRadius: "8px",
             border: "none",
             color: "white",
@@ -159,7 +150,7 @@ export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
             cursor: "pointer",
             marginTop: "15px",
           }}
-          onClick={handleApprove}
+          onClick={handleReject}
         >
           저장
         </button>
