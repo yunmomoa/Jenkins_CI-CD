@@ -1,4 +1,4 @@
-package com.workly.final_project.calendar.model.vo;
+package com.workly.final_project.calendar.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CalendarMemo {
-    private int userNo;     // FK (PK 역할)
+public class CalendarMemoDTO {
+    private int userNo;     // 사용자 번호 (FK)
     private String memo;    // 메모 내용
 }
