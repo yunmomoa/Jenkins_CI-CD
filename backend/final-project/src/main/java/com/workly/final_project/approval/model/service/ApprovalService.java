@@ -61,5 +61,8 @@ public interface ApprovalService {
 
 	
 	// 예빈 추가 끝
+	
+	//진행함
+    List<Approval> getApprovalProgressList(int userNo);
 
 }
