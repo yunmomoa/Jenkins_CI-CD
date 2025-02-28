@@ -127,6 +127,14 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 	
 	// 예빈 추가 끝
+	
+	//진행함
+	@Override
+    public List<Approval> getApprovalProgressList(int userNo) {
+        return approvalDao.getApprovalProgressList(userNo);
+    }
+
+
 
 }
 
