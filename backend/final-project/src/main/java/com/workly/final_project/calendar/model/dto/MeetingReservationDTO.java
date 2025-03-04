@@ -1,4 +1,4 @@
-package com.workly.final_project.calendar.model.vo;
+package com.workly.final_project.calendar.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +11,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MeetingReservation {
+public class MeetingReservationDTO {
     private int mrResNo;      // 회의실 예약 번호 (PK)
     private int mrNo;         // 회의실 번호 (FK)
-    private int userNo;       // 예약한 사용자 번호 (FK)
+    private int userNo;       // 사용자 번호 (FK)
     private String mrResTitle; // 회의 제목
     private Date startTime;   // 예약 시작 시간
     private Date endTime;     // 예약 종료 시간
