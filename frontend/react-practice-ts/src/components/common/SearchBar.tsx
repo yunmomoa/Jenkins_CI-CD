@@ -49,7 +49,7 @@ const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handl
                 <select name="cDept" value={category.cDept} className={styles.select} onChange={handleCategoryChange}>
                     <option value="0" >부서명</option>
                     {
-                        dept.map(function (e, i) {
+                        dept.map(function (e) {
                             return (
                                 <option key={e.deptNo} value={e.deptNo}>{e.deptName}</option>
                             )
@@ -59,7 +59,7 @@ const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handl
                 <select name="cPosi" value={category.cPosi} className={styles.select} onChange={handleCategoryChange}>
                     <option value="0">직급</option>
                     {
-                        position.map(function (e, i) {
+                        position.map(function (e) {
                             return (
                                 <option key={e.positionNo} value={e.positionNo}>{e.positionName}</option>
                             )
