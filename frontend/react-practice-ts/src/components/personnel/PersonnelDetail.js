@@ -3,7 +3,7 @@ import axios from '../../utils/CustomAxios';
 import styles from '../../styles/personnel/PersonnelDetail.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import defaultImg from "@/assets/images/icon/default-profile.png";
+import defaultImg from "@/assets/Images/icon/default-profile.png";
 import AddressForm from './AddressForm';
 import DeptPositionSelect from './DeptPositionSelect';
 const PersonnelDetail = () => {
