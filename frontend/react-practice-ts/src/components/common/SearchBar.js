@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import styles from '../../styles/common/SearchBar.module.css';
-import search from '../../assets/images/icon/search.png';
+import search from '@/assets/images/icon/search.png';
 import { useEffect, useState } from 'react';
 import axios from '../../utils/CustomAxios';
 // @ts-ignore
