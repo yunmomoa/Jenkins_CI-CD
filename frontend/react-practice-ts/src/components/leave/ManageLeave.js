@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import styles from '../../styles/leave/ManageLeave.module.css';
-import search from '../../assets/images/icon/search.png';
+import search from '@/assets/images/icon/search.png';
 import { useEffect, useState } from 'react';
 import MemberSearchModal from './MemberSearchModal';
 import axios from '../../utils/CustomAxios';

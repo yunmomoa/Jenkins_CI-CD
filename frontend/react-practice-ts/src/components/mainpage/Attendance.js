@@ -2,7 +2,7 @@ import { jsxs as _jsxs, jsx as _jsx } from "react/jsx-runtime";
 import { useEffect, useState } from 'react';
 import styles from '../../styles/mainpage/Attendance.module.css';
 import { useSelector } from 'react-redux';
-import profileImg from '../../assets/images/icon/profile.png';
+import profileImg from '@/assets/images/icon/profile.png';
 import axios from '../../utils/CustomAxios';
 const Attendance = () => {
     const [time, setTime] = useState(new Date());

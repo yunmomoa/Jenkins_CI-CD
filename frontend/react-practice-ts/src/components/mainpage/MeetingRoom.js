@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../../styles/mainpage/MeetingRoom.module.css';
-import search from '../../assets/images/icon/search.png';
+import search from '@/assets/images/icon/search.png';
 const MeetingRoom = () => {
     const [meetings, setMeetings] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('en-CA')); // 'YYYY-MM-DD' 형식으로 현재 날짜 설정

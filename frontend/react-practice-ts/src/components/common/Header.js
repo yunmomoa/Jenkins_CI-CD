@@ -1,9 +1,9 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import changePwd from '../../assets/images/icon/changePwd.png';
-import down from '../../assets/images/icon/down.png';
-import logout from '../../assets/images/icon/logout.png';
-import mypage from '../../assets/images/icon/mypage.png';
-import profileImg from '../../assets/images/icon/profile.png';
+import changePwd from '@/assets/images/icon/changePwd.png';
+import down from '@/assets/images/icon/down.png';
+import logout from '@/assets/images/icon/logout.png';
+import mypage from '@/assets/images/icon/mypage.png';
+import profileImg from '@/assets/images/icon/profile.png';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/common/Header.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';

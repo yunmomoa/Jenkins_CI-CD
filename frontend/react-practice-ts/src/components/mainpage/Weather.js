@@ -3,8 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import weatherDescKo from "./weatherDescKo";
 import styles from '../../styles/mainpage/Weather.module.css';
-import windImg from "../../assets/images/icon/wind.png";
-import feelTempImg from "../../assets/images/icon/feelTemp.png";
+import windImg from "@/assets/images/icon/wind.png";
+import feelTempImg from "@/assets/images/icon/feelTemp.png";
 import { PacmanLoader } from "react-spinners";
 const Weather = () => {
     const API_KEY = import.meta.env.VITE_WEATHER_KEY;
