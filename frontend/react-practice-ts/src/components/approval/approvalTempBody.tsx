@@ -116,7 +116,7 @@ const containerStyle = {
 };
 
 // ✅ 테이블 스타일 (오른쪽으로 이동 & 폭 넓힘)
-const tableStyle = {
+const tableStyle:React.CSSProperties = {
   width: "90%", // ✅ 기존 90% → 95%로 넓힘
   borderCollapse: "collapse",
   textAlign: "center",

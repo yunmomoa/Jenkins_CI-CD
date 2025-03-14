@@ -314,6 +314,7 @@ const Chat: React.FC<ChatProps> = ({ currentUser, onClose }) => {
               onChangeRoom={handleRoomChange}
               setIsAddMemberPanelOpen={setIsAddMemberPanelOpen}
             />
+            
             {isAddMemberPanelOpen && (
               <AddMemberPanel
                 allEmployees={[]} // TODO: 백엔드 API에서 전체 사원 목록 가져오기

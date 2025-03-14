@@ -3,7 +3,7 @@ import styles from "../../styles/common/Pagination.module.css";
 const Pagination2 = ({pageInfo, setCurrentPage}) => {
   if(!pageInfo) return null;
 
-  const {listCount, currentPage, pageLimit, contentsLimit ,startPage, endPage, maxPage} = pageInfo;
+  const {currentPage, maxPage} = pageInfo;
   
   return (
     <div>

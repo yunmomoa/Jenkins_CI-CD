@@ -11,7 +11,6 @@ export const ApprovalTempUpdatePage = () => {
   const { tempNo } = useParams(); // ✅ URL에서 tempNo 가져오기
   const [approvalData, setApprovalData] = useState(null);
 
-  const { tempNo } = useParams();
   const parsedTempNo = Number(tempNo);
 
   useEffect(() => {

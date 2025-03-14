@@ -3,6 +3,7 @@ import search from '../../assets/images/icon/search.png';
 import { useEffect, useState } from 'react';
 import axios from '../../utils/CustomAxios';
 
+// @ts-ignore
 const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handleSearch, setCurrentPage }) => {
     const [dept, setDept] = useState([]);
     const [position, setPosition] = useState([]);
@@ -15,7 +16,7 @@ const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handl
             })
     }, [category])
 
-    const handleCategoryChange = (e) => {
+    const handleCategoryChange = (e:any) => {
         setCategory({
             ...category,
             [e.target.name]: e.target.value
@@ -23,7 +24,7 @@ const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handl
         setCurrentPage(1)
     }
 
-    const handleSearchMember = (e) => {
+    const handleSearchMember = (e:any) => {
         setSearchMember(e.target.value);
         setCurrentPage(1)
     }
@@ -37,12 +38,12 @@ const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handl
         setSearchMember('');
     }
 
-    const handelEnter = (e) => {
+    const handelEnter = (e:any) => {
         if(e.key === 'Enter') {
             handleSearch();
         }
     }
-
+    
     return (
         <div className={styles.container}>
             <div className={styles.filterGroup}>
@@ -51,6 +52,7 @@ const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handl
                     {
                         dept.map(function (e) {
                             return (
+                                // @ts-ignore
                                 <option key={e.deptNo} value={e.deptNo}>{e.deptName}</option>
                             )
                         })
@@ -61,6 +63,7 @@ const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handl
                     {
                         position.map(function (e) {
                             return (
+                                // @ts-ignore
                                 <option key={e.positionNo} value={e.positionNo}>{e.positionName}</option>
                             )
                         })

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ApprovalLineModal from "./approvalLineModal";
 import ApprovalCCModal from "./approvalCCModal";
 
-export const ApprovalWriteTempHeader = ({approvalData, setApprovalData, selectedCCUsers = [], setSelectedCCUsers = []}) => {
+const ApprovalWriteTempHeader = ({approvalData, setApprovalData, selectedCCUsers = [], setSelectedCCUsers = []}) => {
     // ✅ 각각의 모달 상태를 독립적으로 관리
     const [approvalLineModalOpen, setApprovalLineModalOpen] = useState(false);
     const [approvalCCModalOpen, setApprovalCCModalOpen] = useState(false);
@@ -327,7 +327,7 @@ const handleRemoveFile = (index: number) => {
   );
 };
 
-const infoContainer = {
+const infoContainer:React.CSSProperties = {
   minHeight: "20px",
   padding: "8px",
   wordBreak: "break-word",
@@ -358,7 +358,7 @@ const fileLinkStyle = {
 };
 
 // 파일 목록을 감싸는 컨테이너 (스크롤 가능)
-const fileListContainerStyle = {
+const fileListContainerStyle:React.CSSProperties = {
   maxWidth: "300px", // 파일명이 너무 길 경우 대비
   maxHeight: "60px", // ✅ 최대 높이 설정하여 스크롤 가능하도록 변경
   overflowY: "auto", // ✅ 스크롤이 필요하면 자동으로 활성화
@@ -479,4 +479,4 @@ const actionButtonStyle = {
     cursor: "pointer",
   };
   
-  
+  export default ApprovalWriteTempHeader;

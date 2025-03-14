@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export const ApprovalWriteTempFooter = ({ approvalData, setApprovalData }) => {
+const ApprovalWriteTempFooter = ({ approvalData, setApprovalData }) => {
   const navigate = useNavigate();
 
   // ✅ 임시저장 수정 또는 저장
@@ -62,3 +62,5 @@ export const ApprovalWriteTempFooter = ({ approvalData, setApprovalData }) => {
     </footer>
   );
 };
+
+export default ApprovalWriteTempFooter;

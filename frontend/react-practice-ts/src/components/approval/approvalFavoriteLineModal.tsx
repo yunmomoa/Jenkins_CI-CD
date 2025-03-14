@@ -97,7 +97,7 @@ const ApprovalFavoriteLineModal = ({ onClose, approvalLines, refreshFavoriteList
 };
 
 // ✅ **스타일 정의**
-const modalOverlay = {
+const modalOverlay:React.CSSProperties = {
   position: "fixed",
   top: 0,
   left: 0,
@@ -109,7 +109,7 @@ const modalOverlay = {
   alignItems: "center",
 };
 
-const modalContainer = {
+const modalContainer:React.CSSProperties = {
   width: "459px",
   height: "205px",
   background: "white",
@@ -122,7 +122,7 @@ const modalContainer = {
   alignItems: "center",
 };
 
-const modalHeader = {
+const modalHeader:React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -131,13 +131,13 @@ const modalHeader = {
   position: "relative",
 };
 
-const modalTitle = {
+const modalTitle:React.CSSProperties = {
   fontSize: "16px",
   fontWeight: "700",
   textAlign: "center",
 };
 
-const closeButton = {
+const closeButton:React.CSSProperties = {
   position: "absolute",
   top: "-10px",
   right: "-10px",
@@ -155,7 +155,7 @@ const closeButton = {
   zIndex: 1000,
 };
 
-const inputStyle = {
+const inputStyle:React.CSSProperties = {
   width: "90%",
   height: "34px",
   borderRadius: "4px",
@@ -166,7 +166,7 @@ const inputStyle = {
   marginBottom: "20px",
 };
 
-const saveButton = {
+const saveButton:React.CSSProperties = {
   width: "90%",
   height: "41px",
   background: "#4880FF",

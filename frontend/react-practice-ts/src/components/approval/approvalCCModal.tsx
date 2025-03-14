@@ -138,7 +138,7 @@ const ApprovalCCModal = ({ onClose, selectedCCUsers, setSelectedCCUsers }) => {
 };
 
 // ✅ **스타일 정의 (JSX 외부에 위치)**
-const modalOverlay = {
+const modalOverlay:React.CSSProperties = {
   position: "fixed",
   top: 0,
   left: 0,
@@ -151,7 +151,7 @@ const modalOverlay = {
   zIndex: 1000
 };
 
-const modalContainer = {
+const modalContainer:React.CSSProperties = {
   width: "770px",
   height: "600px",
   background: "white",
@@ -160,7 +160,7 @@ const modalContainer = {
   position: "relative",
 };
 
-const modalHeader = {
+const modalHeader:React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -170,7 +170,7 @@ const modalHeader = {
   height: "40px",
 };
 
-const closeButton = {
+const closeButton:React.CSSProperties = {
   position: "absolute",
   top: "10px",
   right: "10px",
@@ -188,30 +188,30 @@ const closeButton = {
   justifyContent: "center",
 };
 
-const modalTitle = {
+const modalTitle:React.CSSProperties = {
   fontSize: "20px",
   fontWeight: "bold",
   margin: "0",
 };
 
-const searchContainer = {
+const searchContainer:React.CSSProperties = {
   marginBottom: "10px",
 };
 
-const searchInput = {
+const searchInput:React.CSSProperties = {
   width: "100%",
   padding: "8px",
   border: "1px solid #ccc",
   borderRadius: "5px",
 };
 
-const contentContainer = {
+const contentContainer:React.CSSProperties = {
   display: "flex",
   gap: "20px",
   fontSize: "12px"
 };
 
-const listContainer = {
+const listContainer:React.CSSProperties = {
   flex: 1,
   border: "1px solid #404040",
   borderRadius: "5px",
@@ -219,12 +219,12 @@ const listContainer = {
   height: "400px",
 };
 
-const tableStyle = {
+const tableStyle:React.CSSProperties = {
   width: "100%",
   borderCollapse: "collapse",
 };
 
-const thStyle = {
+const thStyle:React.CSSProperties = {
   padding: "10px",
   borderBottom: "2px solid #404040",
   background: "#f5f5f5",
@@ -232,16 +232,16 @@ const thStyle = {
   textAlign: "left",
 };
 
-const trStyle = {
+const trStyle:React.CSSProperties = {
   cursor: "pointer",
   borderBottom: "1px solid #ddd",
 };
 
-const tdStyle = {
+const tdStyle:React.CSSProperties = {
   padding: "10px",
 };
 
-const selectedListContainer = {
+const selectedListContainer:React.CSSProperties = {
   width: "250px",
   border: "1px solid #404040",
   borderRadius: "5px",
@@ -249,12 +249,12 @@ const selectedListContainer = {
   background: "white",
 };
 
-const selectedList = {
+const selectedList:React.CSSProperties = {
   listStyle: "none",
   padding: 0,
 };
 
-const selectedItem = {
+const selectedItem:React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -263,7 +263,7 @@ const selectedItem = {
   fontSize: "12px"
 };
 
-const removeButton = {
+const removeButton:React.CSSProperties = {
   background: "white",
   border: "1px solid black",
   borderRadius: "5px",
@@ -272,7 +272,7 @@ const removeButton = {
   fontSize: "16px",
 };
 
-const saveButton = {
+const saveButton:React.CSSProperties = {
   width: "100%",
   padding: "12px",
   background: "#4880FF",

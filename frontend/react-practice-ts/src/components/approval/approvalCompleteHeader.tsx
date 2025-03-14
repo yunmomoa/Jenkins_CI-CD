@@ -290,7 +290,7 @@ const getStatusColor = (status) => {
 
 
   // ✅ **컨테이너 스타일**
-  const containerStyle = {
+  const containerStyle:React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -304,7 +304,7 @@ const getStatusColor = (status) => {
   };
   
   // ✅ **타이틀 스타일**
-  const titleStyle = {
+  const titleStyle:React.CSSProperties = {
     fontSize: "16px",
     fontWeight: "700",
     color: "#202224",
@@ -312,14 +312,14 @@ const getStatusColor = (status) => {
   };
   
   // ✅ **구분선 스타일**
-  const dividerStyle = {
+  const dividerStyle:React.CSSProperties = {
     width: "100%",
     height: "1px",
     backgroundColor: "rgba(0, 0, 0, 0.15)",
     margin: "10px 0",
   };
   
-  const dividerStyleBold = {
+  const dividerStyleBold:React.CSSProperties = {
     width: "100%",
     height: "3px",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
@@ -327,14 +327,14 @@ const getStatusColor = (status) => {
   };
   
   // ✅ **행 스타일**
-  const rowContainerStyle = {
+  const rowContainerStyle:React.CSSProperties = {
     display: "flex",
     justifyContent: "space-between",
     width: "80%",
     gap: "20px",
   };
   
-  const rowStyle = {
+  const rowStyle:React.CSSProperties = {
     display: "flex",
     alignItems: "center",
     flex: 1,
@@ -342,7 +342,7 @@ const getStatusColor = (status) => {
   };
   
   // ✅ **라벨 스타일**
-  const labelStyle = {
+  const labelStyle:React.CSSProperties = {
     width: "80px",
     fontSize: "14px",
     fontWeight: "700",
@@ -350,20 +350,20 @@ const getStatusColor = (status) => {
   };
   
   // ✅ **텍스트 스타일**
-  const textStyle = {
+  const textStyle:React.CSSProperties = {
     fontSize: "13px",
     color: "#666"
   };
   
   // ✅ **결재라인 스타일**
-  const approvalListContainerStyle = {
+  const approvalListContainerStyle:React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
     gap: "4px",
     padding: "3px",
   };
   
-  const approvalItemStyle = {
+  const approvalItemStyle:React.CSSProperties = {
     display: "grid",
     gridTemplateColumns: "1fr 0.5fr 0.6fr", // ✅ 첫 번째 컬럼을 적절히 조정하여 중앙 배치
     alignItems: "center",
@@ -374,19 +374,19 @@ const getStatusColor = (status) => {
   };
   
   // ✅ **결재일자 스타일**
-  const dateStyle = {
+  const dateStyle:React.CSSProperties = {
     fontSize: "12px",
     color: "#666",
   };
   
   // ✅ **참조자 컨테이너 스타일**
-  const referenceContainerStyle = {
+  const referenceContainerStyle:React.CSSProperties = {
     display: "flex",
     gap: "10px",
     flexWrap: "wrap",
   };
   
-  const referenceItemStyle = {
+  const referenceItemStyle:React.CSSProperties = {
     background: "white",
     border: "1px solid #4880FF",
     borderRadius: "8px",

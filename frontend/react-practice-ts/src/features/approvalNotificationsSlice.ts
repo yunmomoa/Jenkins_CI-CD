@@ -1,3 +1,4 @@
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 interface NotificationState {
@@ -42,6 +43,7 @@ export const fetchApprovalStatus = createAsyncThunk(
     return response.data;
   }
 );
+
 const approvalNotificationsSlice = createSlice({
   name: "notifications",
   initialState,

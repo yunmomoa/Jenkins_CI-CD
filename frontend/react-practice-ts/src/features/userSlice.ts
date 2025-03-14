@@ -67,7 +67,7 @@ const userSlice = createSlice({
                 companyId: user.companyId || 0
             }
         },
-        logoutUser(state) {
+        logoutUser() {
             localStorage.removeItem("user");
             return {
                 userNo: 0,

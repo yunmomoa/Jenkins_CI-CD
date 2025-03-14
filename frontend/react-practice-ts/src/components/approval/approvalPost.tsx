@@ -127,43 +127,43 @@ const getStatusStyle = (status: number) => {
   }
 };
 
-const containerStyle = {
+const containerStyle:React.CSSProperties = {
     width: "100%",
     display: "flex",
     justifyContent: "center",
     padding: "20px",
   };
   
-const tableStyle = {
+const tableStyle:React.CSSProperties = {
     width: "90%",
     borderCollapse: "collapse",
     textAlign: "center",
     justifyContent: "center"
 };
 
-const thStyle = {
+const thStyle:React.CSSProperties = {
   padding: "12px",
   borderBottom: "2px solid #202224",
   fontSize: "13px",
   fontWeight: 700,
 };
 
-const rowStyle = {
+const rowStyle:React.CSSProperties = {
   borderBottom: "1px solid #E0E0E0",
 };
 
-const tdStyle = {
+const tdStyle:React.CSSProperties = {
   padding: "10px",
   fontSize: "12px",
   color: "#202224",
 };
 
-const tdTitleStyle = {
+const tdTitleStyle:React.CSSProperties = {
   ...tdStyle,
   textAlign: "left",
 };
 
-const tdIconStyle = {
+const tdIconStyle:React.CSSProperties = {
   width: "20px",
   textAlign: "center",
 };

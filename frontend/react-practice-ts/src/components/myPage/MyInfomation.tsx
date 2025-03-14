@@ -8,7 +8,7 @@ import AddressForm from '../personnel/AddressForm';
 import ChangePwdModal from './ChangePwdModal';
 
 const MyInfomation = () => {
-    let user = useSelector((state) => {
+    let user = useSelector((state:any) => {
         return state.user;
     });
     const [openModal, setOpenModal] = useState(false);

@@ -35,7 +35,7 @@ const ApprovalOutcheckModal = ({ onClose, onGoBack }) => {
 };
 
 // ✅ **스타일 정의**
-const modalOverlay = {
+const modalOverlay:React.CSSProperties = {
   position: "fixed",
   top: 0,
   left: 0,
@@ -47,7 +47,7 @@ const modalOverlay = {
   alignItems: "center",
 };
 
-const modalContainer = {
+const modalContainer:React.CSSProperties = {
   width: "500px",
   background: "white",
   borderRadius: "8px",
@@ -59,7 +59,7 @@ const modalContainer = {
   alignItems: "center",
 };
 
-const modalHeader = {
+const modalHeader:React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -67,13 +67,13 @@ const modalHeader = {
   marginBottom: "20px",
 };
 
-const modalTitle = {
+const modalTitle:React.CSSProperties = {
   fontSize: "16px",
   fontWeight: "700",
   color: "#202224",
 };
 
-const closeButton = {
+const closeButton:React.CSSProperties = {
   position: "absolute",
   top: "10px",
   right: "15px",
@@ -84,32 +84,32 @@ const closeButton = {
   color: "black",
 };
 
-const messageContainer = {
+const messageContainer:React.CSSProperties = {
   textAlign: "center",
   marginBottom: "20px",
 };
 
-const mainMessage = {
+const mainMessage:React.CSSProperties = {
   fontSize: "15px",
   fontWeight: "700",
   color: "#202224",
   marginBottom: "15px",
 };
 
-const subMessage = {
+const subMessage:React.CSSProperties = {
   fontSize: "12px",
   fontWeight: "400",
   color: "#202224",
 };
 
-const buttonContainer = {
+const buttonContainer:React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   gap: "20px",
   width: "100%",
 };
 
-const backButton = {
+const backButton:React.CSSProperties = {
   width: "220px",
   height: "45px",
   background: "#4880FF",
@@ -122,7 +122,7 @@ const backButton = {
   textAlign: "center",
 };
 
-const exitButton = {
+const exitButton:React.CSSProperties = {
   width: "220px",
   height: "45px",
   background: "white",

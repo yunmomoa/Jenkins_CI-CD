@@ -301,7 +301,7 @@ const containerStyle = {
   };
   
   // ✅ 테이블 스타일 (오른쪽으로 이동 & 폭 넓힘)
-  const tableStyle = {
+  const tableStyle:React.CSSProperties = {
     width: "90%", // ✅ 기존 90% → 95%로 넓힘
     borderCollapse: "collapse",
     textAlign: "center",
@@ -325,13 +325,13 @@ const tdStyle = {
   color: "#202224",
 };
 
-const tdTitleStyle = {
+const tdTitleStyle:React.CSSProperties = {
   ...tdStyle,
   textAlign: "left",
 };
 
 // 아이콘을 위한 셀 스타일 (왼쪽 정렬)
-const tdIconStyle = {
+const tdIconStyle:React.CSSProperties = {
   width: "20px", // 아이콘 크기 조정
   textAlign: "center",
 };

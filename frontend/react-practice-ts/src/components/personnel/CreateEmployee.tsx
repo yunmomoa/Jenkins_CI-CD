@@ -22,14 +22,14 @@ const CreateEmployee = () => {
     });
     
     const [addressApi, setAddressApi] = useState("");
-    const [profileImg, setProfileImg] = useState(null); // 프로필 이미지
-    const [preview, setPreview] = useState(null); // 프로필 이미지 미리보기
-    const fileInputRef = useRef(null);
+    const [profileImg, setProfileImg] = useState<File|null>(null); // 프로필 이미지
+    const [preview, setPreview] = useState<string|null>(null); // 프로필 이미지 미리보기
+    const fileInputRef = useRef<HTMLInputElement|null>(null);
     const companyId = useSelector((state: any) => state.user.companyId);
 
     const navigate = useNavigate();
 
-    const handleFileChange = (e) => {
+    const handleFileChange = (e:any) => {
         const file = e.target.files[0];
 
         if(file.size > 3 * 1024 * 1024) {
@@ -41,16 +41,16 @@ const CreateEmployee = () => {
         setPreview(URL.createObjectURL(file));
     }
 
-    const handleFileCancle = (e) => {
+    const handleFileCancle = () => {
         setPreview(null);
         setProfileImg(null);
     }
 
     const handleImageClick = () => {
-        fileInputRef.current.click();
+        fileInputRef.current?.click();
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e:any) => {
         setMember({
             ...member, 
             [e.target.name]: e.target.value 

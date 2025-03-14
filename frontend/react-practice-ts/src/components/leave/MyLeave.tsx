@@ -11,7 +11,7 @@ const MyLeave = () => {
     const [pageInfo, setPageInfo] = useState({}); 
     const [currentPage, setCurrentPage] = useState(1);
 
-    let user = useSelector((state) => {
+    let user = useSelector((state:any) => {
         return state.user;
     });
 

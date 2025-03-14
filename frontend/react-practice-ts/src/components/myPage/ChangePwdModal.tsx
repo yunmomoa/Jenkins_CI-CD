@@ -13,7 +13,7 @@ const ChangePwdModal = ({ setOpenModal }) => {
     const [errorMessage, setErrorMessage] = useState("");
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
 
-    let user = useSelector((state) => {
+    let user = useSelector((state:any) => {
         return state.user;
     });
 

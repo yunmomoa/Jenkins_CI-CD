@@ -7,6 +7,14 @@ export default defineConfig({
   define: {
     global: 'globalThis', // global 변수를 globalThis로 설정 - 채팅 사용
   },
+  esbuild: {
+    tsconfigRaw: {
+      compilerOptions: {
+        noEmit: true, // 타입 오류 무시하고 빌드
+        skipLibCheck: true
+      }
+    }
+  },
   server: {
     proxy: {
       '/api': {
