@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useRef, useState } from "react";
 import styles from "./CompanyEnroll.module.css";
-import defaultImg from "@/assets/Images/icon/default-profile.png";
+import defaultImg from "@/assets/images/icon/default-profile.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import DeptPositionSelect from "../personnel/DeptPositionSelect";
