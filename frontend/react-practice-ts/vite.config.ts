@@ -15,6 +15,11 @@ export default defineConfig({
       }
     }
   },
+  resolve: {
+    alias: {
+      "@": "/src",
+    }
+  },
   server: {
     proxy: {
       '/api': {
