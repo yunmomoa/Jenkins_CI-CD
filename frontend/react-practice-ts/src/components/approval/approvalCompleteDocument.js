@@ -8,7 +8,7 @@ import htmlToPdfmake from "html-to-pdfmake"; // HTML → pdfMake 변환 라이�
 import fontBase64 from "../../fonts/fontBase64.json"; // 한글 폰트 로드
 // 한글 폰트 등록
 pdfMake.vfs = {
-    ...(pdfFonts.pdfMake.vfs?.vfs || {}),
+    ...(pdfFonts.pdfMake),
     ...fontBase64, // Base64 인코딩된 폰트 추가
 };
 pdfMake.fonts = {
