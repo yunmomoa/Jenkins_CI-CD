@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from 'react';
-import searchIcon from "../../assets/Images/chat/search.png";
+import searchIcon from "../../assets/images/chat/search.png";
 import OrgMemberPlus from './OrgMemberPlus';
 const CreateOrg = ({ onComplete, onClose }) => {
     const [deptName, setDeptName] = useState('');

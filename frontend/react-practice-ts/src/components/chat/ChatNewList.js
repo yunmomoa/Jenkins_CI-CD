@@ -1,5 +1,5 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import chatPlus from "../../assets/Images/chat/chatplus.png";
+import chatPlus from "../../assets/images/chat/chatplus.png";
 //import ChatCreate from "./ChatCreate";
 const ChatNewList = ({ setIsCreatingChat, setIsFirstChatOpen, }) => {
     return (_jsxs("div", { className: "ChatNewList", style: {

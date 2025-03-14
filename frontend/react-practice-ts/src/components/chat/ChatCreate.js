@@ -1,8 +1,8 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from 'react';
-import chatIcon from "../../assets/Images/chat/chatBiggest.png";
-import group from "../../assets/Images/chat/groupChat.png";
-import searchIcon from "../../assets/Images/chat/search.png"; // 🔍 검색 아이콘 이미지 임포트 (파일경로는 네 프로젝트에 맞게 수정해)
+import chatIcon from "../../assets/images/chat/chatBiggest.png";
+import group from "../../assets/images/chat/groupChat.png";
+import searchIcon from "../../assets/images/chat/search.png"; // 🔍 검색 아이콘 이미지 임포트 (파일경로는 네 프로젝트에 맞게 수정해)
 import { useEffect } from "react";
 const ChatCreate = ({ invitePeople, onClose, }) => {
     const [chatType, setChatType] = useState('');

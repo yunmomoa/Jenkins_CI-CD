@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { useState } from "react";
-import profile from "../../assets/Images/chat/profile.png";
-import bell from "../../assets/Images/chat/bell.png";
+import profile from "@/assets/images/chat/profile.png";
+import bell from "@/assets/images/chat/bell.png";
 const Alarm = ({ chatRooms, setChatList, onNoticeClick }) => {
     const [filter, setFilter] = useState("all");
     // const [chatRooms, setChatRooms] = useState<ChatRoom[]>([

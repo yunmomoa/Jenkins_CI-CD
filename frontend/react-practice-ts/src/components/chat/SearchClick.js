@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from "react";
 import axios from "axios";
-import search from "../../assets/Images/chat/search.png";
+import search from "../../assets/images/chat/search.png";
 const SearchClick = ({ onProfileClick }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
