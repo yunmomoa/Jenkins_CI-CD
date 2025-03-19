@@ -33,7 +33,7 @@ const Login = () => {
             removeCookie("rememberId");
         }
 
-        axios.post(`${import.meta.env.VITE_API_URL}/workly/login`, {
+        axios.post(`${import.meta.env.VITE_API_URL}workly/login`, {
             userNo: userNoAsInt,
             userPwd
         })
@@ -67,6 +67,7 @@ const Login = () => {
         console.log("cookie token확인: ", getCookie("accessToken"));
         console.log("localStorage 확인: ", localStorage.getItem("user"));
         console.log("cookie rememberId확인: ", getCookie("rememberId"));
+        console.log(".env 확인: ", import.meta.env.VITE_API_URL);
 
         const userNo = getCookie("rememberId");
         if (userNo) {
