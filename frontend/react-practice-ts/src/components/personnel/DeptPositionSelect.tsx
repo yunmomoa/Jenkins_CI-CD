@@ -10,7 +10,7 @@ const DeptPositionSelect = ({positionNo, deptNo, handleChange}) => {
     const [selectedPosition, setSelectedPosition] = useState(positionNo);
     
     useEffect(() => {
-        axios.get("http://localhost:8003/workly/dept-posi")
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/dept-posi`)
              .then((response) => {
                 setDept(response.data.department);
                 setPosition(response.data.position);
@@ -22,7 +22,6 @@ const DeptPositionSelect = ({positionNo, deptNo, handleChange}) => {
         setSelectedDept(deptNo);
         setSelectedPosition(positionNo);
     }, [deptNo, positionNo]);
-    // value={selectedDept}
     return (
         <>
             <select name="deptNo" value={selectedDept} className={styles.input} onChange={handleChange} required>

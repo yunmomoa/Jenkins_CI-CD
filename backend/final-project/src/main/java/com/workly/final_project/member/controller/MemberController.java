@@ -37,11 +37,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("http://3.34.177.173")
 public class MemberController {
 	
 	private final MemberService service;
 	
-	@CrossOrigin("http://3.34.177.173")
 	@GetMapping("/personnel")
 	public MemberListDTO selectSearchMemberList(
 			@RequestParam int cPage,
@@ -67,7 +67,6 @@ public class MemberController {
 		return new MemberListDTO(pi, list);
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@GetMapping("/personnelDetail/{userNo}")
 	public MemberDTO selectMember(
 			@PathVariable int userNo
@@ -75,7 +74,6 @@ public class MemberController {
 		return service.selectMember(userNo);
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@GetMapping("/dept-posi")
 	public DeptPositionListDTO selectDeptPosiList() {
 		List<Department> deptList = service.selectDeptList();
@@ -84,7 +82,6 @@ public class MemberController {
 		return new DeptPositionListDTO(deptList, posiList);
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@PutMapping("/memberUpdate")
 	public ResponseEntity<Map<String, Object>> updateMember(
 			@RequestPart("member") Member m,
@@ -145,13 +142,11 @@ public class MemberController {
 		return responseEntity;
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@GetMapping("/memberSearch")
 	public List<MemberDTO> selectModalMemberList() {
 		return service.selectModalMemberList();
 	}
 
-	@CrossOrigin("http://localhost:5173")
 	@PutMapping("/changePwd")
 	public ResponseEntity<Map<String, Object>> updatePwd(
 			@RequestBody ChangePwd changePwd

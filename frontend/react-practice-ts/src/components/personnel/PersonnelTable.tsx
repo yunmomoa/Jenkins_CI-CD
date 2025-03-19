@@ -21,7 +21,7 @@ const PersonnelTable = () => {
     const navigate = useNavigate();
     
     const fetchPesonnel = () => {
-        axios.get("http://localhost:8003/workly/personnel", {
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/personnel`, {
             params: {
                 cPage: currentPage,
                 dept: category.cDept,

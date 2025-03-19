@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("http://3.34.177.173")
 public class LeaveController {
 	
 	private final LeaveService service;
@@ -34,7 +35,6 @@ public class LeaveController {
 		return "leave";
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@GetMapping("/myLeave")
 	public ResponseEntity<?>  selectLeaveHistory(
 			@RequestParam int year,
@@ -65,7 +65,6 @@ public class LeaveController {
 		}
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@GetMapping("/leaveDetail")
 	public List<AnnualHistoryDTO> selectLeaveDetail(
 			@RequestParam int userNo,
@@ -83,7 +82,6 @@ public class LeaveController {
 		return list;
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@PutMapping("/updateLeave")
 	public ResponseEntity<Map<String, Object>> updateLeave(
 			@RequestParam int userNo,
@@ -111,14 +109,12 @@ public class LeaveController {
 		return responseEntity;
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@GetMapping("/leavePolicy")
 	public List<LeavePolicy> selectLeavePolicy() {
 		List<LeavePolicy> list = service.selectLeavePolicy();
 		return list;
 	}
 	
-	@CrossOrigin("http://localhost:5173")
 	@PutMapping("/updatePolicy")
 	public ResponseEntity<Map<String, String>> updatePolicy(
 			@RequestBody LeavePolicy policy

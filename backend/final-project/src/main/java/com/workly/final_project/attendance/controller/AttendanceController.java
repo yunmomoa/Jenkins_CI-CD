@@ -42,7 +42,7 @@ public class AttendanceController {
 		}
 	}
 	
-	@GetMapping("updateAttendance")
+	@GetMapping("/updateAttendance")
 	public ResponseEntity<Map<String, Object>> updateAttendance(
 			@RequestParam int userNo
 			) {

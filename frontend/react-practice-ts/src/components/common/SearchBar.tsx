@@ -9,7 +9,7 @@ const SearchBar = ({ category, setCategory, searchMember, setSearchMember, handl
     const [position, setPosition] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8003/workly/dept-posi")
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/dept-posi`)
             .then((response) => {
                 setDept(response.data.department);
                 setPosition(response.data.position);

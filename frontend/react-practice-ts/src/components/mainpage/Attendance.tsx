@@ -8,7 +8,7 @@ const Attendance = () => {
     const [time, setTime] = useState(new Date());
     const [preview, setPreview] = useState("");
 
-    const url = "http://localhost:8003/workly/uploads/profile/";
+    const url = `${import.meta.env.VITE_API_URL}/workly/uploads/profile/`;
 
     let user = useSelector((state:any) => {
         return state.user;
@@ -39,7 +39,7 @@ const Attendance = () => {
             return;
         }
 
-        axios.get("http://localhost:8003/workly/insertAttendance", {
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/insertAttendance`, {
             params: {
                 userNo: user.userNo
             }
@@ -59,7 +59,7 @@ const Attendance = () => {
             return;
         }
 
-        axios.get("http://localhost:8003/workly/updateAttendance", {
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/updateAttendance`, {
             params: {
                 userNo: user.userNo
             }
