@@ -41,7 +41,7 @@ public class MemberController {
 	
 	private final MemberService service;
 	
-	@CrossOrigin("http://localhost:5173")
+	@CrossOrigin("http://3.34.177.173")
 	@GetMapping("/personnel")
 	public MemberListDTO selectSearchMemberList(
 			@RequestParam int cPage,
