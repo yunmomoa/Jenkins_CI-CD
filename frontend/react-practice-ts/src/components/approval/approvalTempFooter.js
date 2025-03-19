@@ -15,7 +15,7 @@ export const ApprovalTempFooter = ({ pageInfo, setCurrentPage, selectedPosts, se
         }
         try {
             for (const tempNo of selectedPosts) {
-                await axios.delete(`http://localhost:8003/workly/api/approvalTemp/deleteApprovalTemp/${tempNo}`);
+                await axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/approvalTemp/deleteApprovalTemp/${tempNo}`);
             }
             alert("✅ 선택한 항목이 삭제되었습니다.");
             setSelectedPosts([]);

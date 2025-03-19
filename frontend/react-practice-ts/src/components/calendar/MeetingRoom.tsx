@@ -36,7 +36,7 @@ const MeetingRoom: React.FC = () => {
   useEffect(() => {
     // 회의실 목록 불러오기
     axios
-      .get("http://localhost:8003/workly/meeting-rooms")
+      .get(`${import.meta.env.VITE_API_URL}/workly/meeting-rooms`)
       .then((response) => {
         console.log("📌 [MeetingRoom.tsx] 가져온 회의실 목록:", response.data);
         setMeetingRooms(response.data);
@@ -47,7 +47,7 @@ const MeetingRoom: React.FC = () => {
 
     // 회의실 예약 목록 불러오기
     axios
-      .get("http://localhost:8003/workly/meeting-reservation")
+      .get(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation`)
       .then((response) => {
         console.log("📌 [MeetingRoom.tsx] 가져온 예약 데이터:", response.data);
         setReservations(response.data);

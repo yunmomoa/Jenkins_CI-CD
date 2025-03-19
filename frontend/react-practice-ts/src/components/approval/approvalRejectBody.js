@@ -18,7 +18,7 @@ export const ApprovalRejectBody = ({ selectedPosts, setSelectedPosts, filteredPo
     useEffect(() => {
         const fetchApprovalPosts = async () => {
             try {
-                const response = await axios.get(`http://localhost:8003/workly/api/approval/rejectList/${userNo}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/rejectList/${userNo}`);
                 const filterdPosts = response.data
                     .filter((post) => post.approvalStatus === 3)
                     .map((post) => ({
@@ -72,7 +72,7 @@ export const ApprovalRejectBody = ({ selectedPosts, setSelectedPosts, filteredPo
         if (!isConfirmed)
             return;
         try {
-            await Promise.all(selectedPosts.map(approvalNo => axios.delete(`http://localhost:8003/workly/api/approval/deleteApproval/${approvalNo}`)));
+            await Promise.all(selectedPosts.map(approvalNo => axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/approval/deleteApproval/${approvalNo}`)));
             alert("선택한 문서가 삭제되었습니다.");
             // 목록 새로고침
             window.location.reload();
@@ -91,7 +91,7 @@ export const ApprovalRejectBody = ({ selectedPosts, setSelectedPosts, filteredPo
             return;
         }
         try {
-            await axios.post(`http://localhost:8003/workly/notifications/read2`, null, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/workly/notifications/read2`, null, {
                 params: { approvalNo, userNo },
             });
             dispatch(fetchApprovalStatus(userNo)); // Redux 상태 즉시 반영

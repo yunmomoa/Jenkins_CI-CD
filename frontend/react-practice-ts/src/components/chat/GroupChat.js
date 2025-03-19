@@ -333,7 +333,7 @@ const GroupChat = ({ room, currentUser, onClose, messages = [], setIsAddMemberPa
     // exitChatRoom API 호출 함수
     const exitChatRoomAPI = async () => {
         try {
-            await axios.post(`http://localhost:8003/workly/api/chat/exit`, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/chat/exit`, {
                 chatRoomNo: room.chatRoomNo,
                 userNo: currentUser.userNo,
                 userName: currentUser.userName,

@@ -42,7 +42,7 @@ const selectFavoriteForApprovalLine = (favorite: { name: string; employees: Empl
 const userNo = useSelector((state: any) => state.user.userNo);
 
   useEffect(() => {
-    axios.get(`http://localhost:8003/workly/api/approval/getFavoriteLines/${userNo}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/getFavoriteLines/${userNo}`)
          .then((response) => {
 
           // 데이터를 FAVORITE_NAME 기준으로 그룹화
@@ -73,7 +73,7 @@ const userNo = useSelector((state: any) => state.user.userNo);
   // ✅ 백엔드에서 직원 목록 가져오기 (axios 사용)
   useEffect(() => {
     axios
-      .get<Employee[]>("http://localhost:8003/workly/api/approval/approvalLineList")
+      .get<Employee[]>(`${import.meta.env.VITE_API_URL}/workly/api/approval/approvalLineList`)
       .then((response) => {
         console.log("백엔드 응답 데이터:", response.data);
 
@@ -107,7 +107,7 @@ const userNo = useSelector((state: any) => state.user.userNo);
   // 즐겨찾기 삭제
   const removeFavoriteLine = (favoriteName: string) => {
 
-    axios.delete(`http://localhost:8003/workly/api/approval/deleteFavoriteLine`,{
+    axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/approval/deleteFavoriteLine`,{
       params: {
         userNo,
         favoriteName: encodeURIComponent(favoriteName)

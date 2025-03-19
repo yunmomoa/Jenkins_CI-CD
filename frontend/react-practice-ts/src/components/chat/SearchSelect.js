@@ -14,7 +14,7 @@ const SearchSelect = ({ onProfileClick }) => {
         }
         setIsLoading(true);
         try {
-            const response = await axios.get("http://localhost:8003/workly/api/chat/search", { params: { userName: searchTerm } });
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/search`, { params: { userName: searchTerm } });
             setSearchResults(response.data);
         }
         catch (error) {

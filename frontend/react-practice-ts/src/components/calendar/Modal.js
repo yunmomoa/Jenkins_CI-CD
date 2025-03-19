@@ -77,11 +77,11 @@ const Modal = ({ isOpen, onClose, selectedEvent, setEvents, setTeamEvents }) => 
         try {
             if (selectedEvent) {
                 console.log("📌 [Modal.tsx] 일정 수정 요청 보냄:", selectedEvent.id);
-                await axios.put(`http://localhost:8003/workly/schedule/update/${selectedEvent.id}`, newEvent);
+                await axios.put(`${import.meta.env.VITE_API_URL}/workly/schedule/update/${selectedEvent.id}`, newEvent);
             }
             else {
                 console.log("📌 [Modal.tsx] 일정 추가 요청 보냄");
-                await axios.post("http://localhost:8003/workly/schedule/add", newEvent);
+                await axios.post(`${import.meta.env.VITE_API_URL}/workly/schedule/add`, newEvent);
             }
             // ✅ 직접 상태 업데이트
             if (selectedTab === "내 일정" && setEvents) {
@@ -101,7 +101,7 @@ const Modal = ({ isOpen, onClose, selectedEvent, setEvents, setTeamEvents }) => 
         if (selectedEvent) {
             if (window.confirm(`정말 "${selectedEvent.title}" 일정을 삭제하시겠습니까?`)) {
                 try {
-                    await axios.delete(`http://localhost:8003/workly/schedule/delete/${selectedEvent.id}`);
+                    await axios.delete(`${import.meta.env.VITE_API_URL}/workly/schedule/delete/${selectedEvent.id}`);
                     // ✅ 삭제된 일정 즉시 캘린더에서 제거
                     if (selectedTab === "내 일정" && setEvents) {
                         setEvents(prevEvents => prevEvents.filter(event => event.id !== selectedEvent.id));

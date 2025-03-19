@@ -13,12 +13,12 @@ const MemberInfo = ({ member = defaultMember, onClose }) => {
         if (!member || !member.userNo)
             return;
         try {
-            const response = await axios.get(`http://localhost:8003/workly/api/user/profile/${member.userNo}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/user/profile/${member.userNo}`);
             console.log(`📌 ${member.userName}의 프로필 이미지:`, response.data.profileImg);
             if (response.data.profileImg) {
                 const imageUrl = response.data.profileImg.startsWith("http")
                     ? response.data.profileImg
-                    : new URL(response.data.profileImg, "http://localhost:8003").href;
+                    : new URL(response.data.profileImg, `${import.meta.env.VITE_API_URL}`).href;
                 setProfileImage(imageUrl);
             }
             else {

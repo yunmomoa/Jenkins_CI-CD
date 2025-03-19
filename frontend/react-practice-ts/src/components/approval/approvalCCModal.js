@@ -9,7 +9,7 @@ const ApprovalCCModal = ({ onClose, selectedCCUsers, setSelectedCCUsers }) => {
     // ✅ 백엔드에서 직원 목록 가져오기 (axios 사용)
     useEffect(() => {
         axios
-            .get("http://localhost:8003/workly/api/approval/approvalLineList")
+            .get(`${import.meta.env.VITE_API_URL}/workly/api/approval/approvalLineList`)
             .then((response) => {
             console.log("백엔드 응답 데이터:", response.data);
             const filteredEmployees = response.data.filter(emp => emp.COMPANY_ID === companyId);

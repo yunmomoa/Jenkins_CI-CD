@@ -18,7 +18,7 @@ export const ApprovalRejectDetailFooter = () => {
 
         try{
             // 백엔드에 삭제 요청
-            await axios.delete(`http://localhost:8003/workly/api/approval/deleteApproval/${approvalNo}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/approval/deleteApproval/${approvalNo}`);
 
             alert("문서가 삭제되었습니다.");
 

@@ -44,7 +44,7 @@ const ChatList = ({ setIsCreatingChat, openNoticeChat, openChatRoom }: ChatListP
         }
 
         // ✅ 2️⃣ 백엔드에서 최신 채팅 목록 가져오기
-        const response = await axios.get(`http://localhost:8003/workly/api/chat/list/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/list/${userNo}`);
        // console.log("📌 백엔드 응답:", response.data);
 
         if (response.data.length > 0) {

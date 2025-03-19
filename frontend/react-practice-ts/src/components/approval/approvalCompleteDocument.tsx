@@ -31,7 +31,7 @@ export const ApprovalCompleteDocument = () => {
     if (!approvalNo) return;
 
     axios
-      .get(`http://localhost:8003/workly/api/approval/getApprovalData`, {
+      .get(`${import.meta.env.VITE_API_URL}/workly/api/approval/getApprovalData`, {
         params: { approvalNo: Number(approvalNo) },
       })
       .then((response) => {

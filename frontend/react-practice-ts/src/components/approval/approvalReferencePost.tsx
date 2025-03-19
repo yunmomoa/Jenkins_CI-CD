@@ -41,7 +41,7 @@ export const ApprovalReferencePost = ({
   useEffect(() => {
     const fetchApprovalPosts = async () => {
       try{
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/referenceList/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/referenceList/${userNo}`);
 
         // 필터링: userNo가 포함된 참조 + 진행 중, 완료인 항목만
         const filterdPosts = response.data.filter((post: any) => post.approvalStatus === 1 || post.approvalStatus === 2)
@@ -71,7 +71,7 @@ export const ApprovalReferencePost = ({
     }
 
     try{
-      await axios.post(`http://localhost:8003/workly/notifications/read`, null, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/workly/notifications/read`, null, {
         params: {approvalNo: approvalNo, userNo: userNo},
       });
       navigate(`/ApprovalCompletePage2/${approvalNo}`);

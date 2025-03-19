@@ -13,7 +13,7 @@ const ApprovalFavoriteLineModal = ({ onClose, approvalLines, refreshFavoriteList
         setLoading(true);
         try {
             // 즐겨찾기 정보 저장
-            const favoriteResponse = await axios.post("http://localhost:8003/workly/api/approval/saveFavoriteInfo", { favoriteName, userNo }, { headers: { "Content-Type": "application/json" } });
+            const favoriteResponse = await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/saveFavoriteInfo`, { favoriteName, userNo }, { headers: { "Content-Type": "application/json" } });
             console.log("서버 응답:", favoriteResponse); // 응답 전체 확인
             console.log("서버에서 받은 데이터:", favoriteResponse.data); // 데이터 확인인
             // 서버에서 생성된 LINE_NO 받아오기
@@ -35,7 +35,7 @@ const ApprovalFavoriteLineModal = ({ onClose, approvalLines, refreshFavoriteList
                 level: emp.level,
             }));
             console.log("전송할 결재라인 데이터:", approvalLineData);
-            await axios.post("http://localhost:8003/workly/api/approval/saveFavoriteLine", approvalLineData, { headers: { "Content-Type": "application/json" } });
+            await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/saveFavoriteLine`, approvalLineData, { headers: { "Content-Type": "application/json" } });
             if (refreshFavoriteList) {
                 refreshFavoriteList(); // 저장된 즐겨찾기 리스트 바로 화면에 출력
             }

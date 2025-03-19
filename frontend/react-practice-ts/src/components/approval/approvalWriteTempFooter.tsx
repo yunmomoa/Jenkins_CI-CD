@@ -27,7 +27,7 @@ const ApprovalWriteTempFooter = ({ approvalData, setApprovalData }) => {
         // ✅ 기존 임시저장 문서 업데이트
         console.log("✅ 임시저장 업데이트 요청:", tempApprovalData);
         await axios.put(
-          `http://localhost:8003/workly/api/approvalTemp/update/${approvalData.tempNo}`,
+          `${import.meta.env.VITE_API_URL}/workly/api/approvalTemp/update/${approvalData.tempNo}`,
           tempApprovalData,
           { headers: { "Content-Type": "application/json" } }
         );
@@ -36,7 +36,7 @@ const ApprovalWriteTempFooter = ({ approvalData, setApprovalData }) => {
         // ✅ 새로운 임시저장
         console.log("✅ 새로운 임시저장 요청:", tempApprovalData);
         const response = await axios.post(
-          "http://localhost:8003/workly/api/approvalTemp/save",
+          `${import.meta.env.VITE_API_URL}/workly/api/approvalTemp/save`,
           tempApprovalData,
           { headers: { "Content-Type": "application/json" } }
         );

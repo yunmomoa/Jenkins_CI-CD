@@ -25,7 +25,7 @@ function Calendar2({ events, setEvents, setSelectedEvent, setModalOpen }: Calend
   useEffect(() => {
     if (deptNo) {
       axios
-        .get(`http://localhost:8003/workly/schedule/team/${deptNo}`)
+        .get(`${import.meta.env.VITE_API_URL}/workly/schedule/team/${deptNo}`)
         .then((response) => {
           console.log("📌 [팀 일정] 백엔드에서 가져온 데이터:", response.data);
           const formattedEvents = response.data.map((event: any) => ({

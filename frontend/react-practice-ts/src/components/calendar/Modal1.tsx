@@ -68,7 +68,7 @@ const Modal1: React.FC<Modal1Props> = ({
   // 회의실 목록 불러오기 (mrNo 기준 오름차순 정렬)
   useEffect(() => {
     axios
-      .get("http://localhost:8003/workly/meeting-rooms")
+      .get(`${import.meta.env.VITE_API_URL}/workly/meeting-rooms`)
       .then((response) => {
         if (Array.isArray(response.data) && response.data.length > 0) {
           const sortedData = response.data.sort(
@@ -144,14 +144,14 @@ const Modal1: React.FC<Modal1Props> = ({
       if (selectedEvent && selectedEvent.meetingRoomId !== undefined) {
         // 예약 수정
         const response = await axios.put(
-          `http://localhost:8003/workly/meeting-reservation/update/${selectedEvent.id}`,
+          `${import.meta.env.VITE_API_URL}/workly/meeting-reservation/update/${selectedEvent.id}`,
           meetingData
         );
         console.log("예약 수정 응답:", response.data);
       } else {
         // 새 예약 추가
         const response = await axios.post(
-          "http://localhost:8003/workly/meeting-reservation/add",
+          `${import.meta.env.VITE_API_URL}/workly/meeting-reservation/add`,
           meetingData
         );
         console.log("예약 추가 응답:", response.data);
@@ -197,7 +197,7 @@ const Modal1: React.FC<Modal1Props> = ({
     ) {
       try {
         await axios.delete(
-          `http://localhost:8003/workly/meeting-reservation/delete/${selectedEvent.id}`
+          `${import.meta.env.VITE_API_URL}/workly/meeting-reservation/delete/${selectedEvent.id}`
         );
 
         if (setMeetingRoomEvents) {

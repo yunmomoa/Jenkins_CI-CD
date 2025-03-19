@@ -41,7 +41,7 @@ export const ApprovalTempFooter: React.FC<ApprovalTempProps> = ({
     try {
       for (const tempNo of selectedPosts) {
         await axios.delete(
-          `http://localhost:8003/workly/api/approvalTemp/deleteApprovalTemp/${tempNo}`
+          `${import.meta.env.VITE_API_URL}/workly/api/approvalTemp/deleteApprovalTemp/${tempNo}`
         );
       }
 

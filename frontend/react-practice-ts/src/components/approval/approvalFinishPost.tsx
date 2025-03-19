@@ -36,7 +36,7 @@ export const ApprovalFinishPost = ({
     }
 
     try{
-      await axios.post(`http://localhost:8003/workly/notifications/read2`, null, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/workly/notifications/read2`, null, {
         params: {approvalNo: approvalNo, userNo: userNo},
       });
 

@@ -11,7 +11,7 @@ export const ApprovalRejectMemoModal = ({ onClose, onSave, approvalNo }) => {
     const handleReject = async () => {
         try {
             // 1. 반려 처리 요청(APPROVAL + APPROVAL_LINE 상태 변경)
-            await axios.post("http://localhost:8003/workly/api/approval/reject", null, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/reject`, null, {
                 params: {
                     approvalNo: approvalNo,
                     userNo: userNo,
@@ -20,7 +20,7 @@ export const ApprovalRejectMemoModal = ({ onClose, onSave, approvalNo }) => {
             // 2. 메모 저장 요청 (userNo 업데이트 후 실행)
             setTimeout(async () => {
                 if (memoContent.trim() !== "") {
-                    const memoResponse = await axios.post("http://localhost:8003/workly/api/approvalMemos/create", {
+                    const memoResponse = await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approvalMemos/create`, {
                         approvalNo: approvalNo,
                         userNo: userNo, // 이제 정상적으로 값이 들어감
                         memoContent: memoContent,

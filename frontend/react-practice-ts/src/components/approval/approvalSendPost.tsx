@@ -50,7 +50,7 @@ export const ApprovalSendPost = ({
       //console.log(`📢 게시글 ${approvalNo} 열람 - 읽음 처리 요청`);
 
       // ✅ 백엔드 API 요청: 읽음 처리
-      await axios.post(`http://localhost:8003/workly/notifications/read`, null, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/workly/notifications/read`, null, {
         params: { approvalNo: approvalNo, userNo: userNo },
       });
 

@@ -12,13 +12,13 @@ const OrgMemberPlus = ({ deptName, onComplete }) => {
         const fetchData = async () => {
             try {
                 // 부서 정보 가져오기
-                const deptResponse = await axios.get("http://localhost:8003/workly/api/chat/departments");
+                const deptResponse = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/departments`);
                 setDepartments(deptResponse.data);
                 // 직급 정보 가져오기
-                const posResponse = await axios.get("http://localhost:8003/workly/api/chat/positions");
+                const posResponse = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/positions`);
                 setPositions(posResponse.data);
                 // 부서원 목록 가져오기 (현재 부서만 필터링)
-                const memberResponse = await axios.get("http://localhost:8003/workly/api/chat/members");
+                const memberResponse = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/members`);
                 const filteredMembers = memberResponse.data.filter((m) => m.deptName === deptName);
                 setMembers(filteredMembers);
             }

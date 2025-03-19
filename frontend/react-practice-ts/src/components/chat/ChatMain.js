@@ -21,11 +21,11 @@ const ChatMain = ({ selectedStatus, setSelectedStatus, onProfileClick, onNoticeC
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                const response = await axios.get("http://localhost:8003/workly/api/chat/members");
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/members`);
                 // 서버에서 chatStatus, statusType을 함께 내려준다고 가정
                 const membersWithProfile = await Promise.all(response.data.map(async (member) => {
                     try {
-                        const profileResponse = await axios.get(`http://localhost:8003/workly/api/user/profile/${member.userNo}`);
+                        const profileResponse = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/user/profile/${member.userNo}`);
                         return {
                             ...member,
                             profileImg: profileResponse.data.profileImg || profileIcon,
@@ -51,7 +51,7 @@ const ChatMain = ({ selectedStatus, setSelectedStatus, onProfileClick, onNoticeC
                 if (localFavorites) {
                     dispatch(setFavorites(JSON.parse(localFavorites)));
                 }
-                const response = await axios.get(`http://localhost:8003/workly/api/chat/favorite/${user.userNo}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/favorite/${user.userNo}`);
                 const dbFavorites = response.data.favorites ?? [];
                 dispatch(setFavorites(dbFavorites));
                 localStorage.setItem("favorites", JSON.stringify(dbFavorites));
@@ -68,14 +68,14 @@ const ChatMain = ({ selectedStatus, setSelectedStatus, onProfileClick, onNoticeC
         try {
             let updatedFavorites = [...favorites, targetUser];
             if (favorites.some((fav) => fav.userNo === targetUser.userNo)) {
-                await axios.delete("http://localhost:8003/workly/api/chat/favorite", {
+                await axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/chat/favorite`, {
                     data: { userNo: user.userNo, favoriteNo: targetUser.userNo },
                     headers: { "Content-Type": "application/json" },
                 });
                 updatedFavorites = favorites.filter((fav) => fav.userNo !== targetUser.userNo);
             }
             else {
-                await axios.post("http://localhost:8003/workly/api/chat/favorite", {
+                await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/chat/favorite`, {
                     userNo: user.userNo,
                     favoriteNo: targetUser.userNo,
                 });
@@ -92,7 +92,7 @@ const ChatMain = ({ selectedStatus, setSelectedStatus, onProfileClick, onNoticeC
     // 4) 내 프로필 이미지 불러오기
     useEffect(() => {
         axios
-            .get(`http://localhost:8003/workly/api/user/profile/${user.userNo}`)
+            .get(`${import.meta.env.VITE_API_URL}/workly/api/user/profile/${user.userNo}`)
             .then((response) => {
             console.log("📌 서버에서 받은 프로필 이미지:", response.data.profileImg);
             setProfileImage(response.data.profileImg);
@@ -104,7 +104,7 @@ const ChatMain = ({ selectedStatus, setSelectedStatus, onProfileClick, onNoticeC
         try {
             const updatedMembers = await Promise.all(members.map(async (member) => {
                 try {
-                    const response = await axios.get(`http://localhost:8003/workly/api/user/profile/${member.userNo}`);
+                    const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/user/profile/${member.userNo}`);
                     return {
                         ...member,
                         profileImg: response.data.profileImg || profileIcon,
@@ -134,7 +134,7 @@ const ChatMain = ({ selectedStatus, setSelectedStatus, onProfileClick, onNoticeC
         const newStatusType = newStatusText === "활성화" ? 2 : 1;
         try {
             // 6-1) DB 업데이트
-            await axios.put(`http://localhost:8003/workly/api/chat/status/${user.userNo}`, { statusType: newStatusType });
+            await axios.put(`${import.meta.env.VITE_API_URL}/workly/api/chat/status/${user.userNo}`, { statusType: newStatusType });
             // 6-2) **로컬 members 배열에서 해당 회원만** 상태값 변경
             setMembers((prev) => prev.map((member) => member.userNo === user.userNo
                 ? {

@@ -43,7 +43,7 @@ const SearchMember = ({
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get("http://localhost:8003/workly/api/chat/members");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/members`);
         const filteredMembers = response.data.filter(
           (m:Member) => m.userNo !== loggedInUser.userNo
         );
@@ -84,7 +84,7 @@ const handleConfirm = async () => {
   console.log("📡 보내는 데이터:", JSON.stringify(requestData, null, 2)); // ✅ 디버깅 추가
 
   try {
-    const response = await axios.post("http://localhost:8003/workly/api/chat/createChatRoom", requestData, {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/chat/createChatRoom`, requestData, {
       headers: { "Content-Type": "application/json" },
     });
 

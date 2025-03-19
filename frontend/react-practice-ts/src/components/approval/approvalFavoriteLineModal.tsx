@@ -19,7 +19,7 @@ const ApprovalFavoriteLineModal = ({ onClose, approvalLines, refreshFavoriteList
     try {
       // 즐겨찾기 정보 저장
       const favoriteResponse = await axios.post(
-        "http://localhost:8003/workly/api/approval/saveFavoriteInfo",
+        `${import.meta.env.VITE_API_URL}/workly/api/approval/saveFavoriteInfo`,
         {favoriteName, userNo},
         {headers: { "Content-Type":"application/json"}}
       );
@@ -51,7 +51,7 @@ const ApprovalFavoriteLineModal = ({ onClose, approvalLines, refreshFavoriteList
       console.log("전송할 결재라인 데이터:", approvalLineData);
 
       await axios.post(
-        "http://localhost:8003/workly/api/approval/saveFavoriteLine",
+        `${import.meta.env.VITE_API_URL}/workly/api/approval/saveFavoriteLine`,
         approvalLineData,
         {headers: {"Content-Type":"application/json"}}
       );

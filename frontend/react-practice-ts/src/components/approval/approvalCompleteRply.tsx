@@ -27,7 +27,7 @@ const ApprovalCompleteReply: React.FC<ApprovalCompleteReplyProps> = () => {
   useEffect(() => {
     if(!approvalNo) return;
 
-    axios.get(`http://localhost:8003/workly/api/approval/getApprovalReply`, {
+    axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/getApprovalReply`, {
       params: {
               approvalNo: approvalNo,
               userNo: userNo
@@ -52,7 +52,7 @@ const ApprovalCompleteReply: React.FC<ApprovalCompleteReplyProps> = () => {
     if(!window.confirm("정말 삭제하시겠습니까?")) return;
 
     axios
-      .delete(`http://localhost:8003/workly/api/approvalMemos/deleteApprovalReply`, {
+      .delete(`${import.meta.env.VITE_API_URL}/workly/api/approvalMemos/deleteApprovalReply`, {
         data: {memoNo},
       })
       .then((response) => {
@@ -71,7 +71,7 @@ const ApprovalCompleteReply: React.FC<ApprovalCompleteReplyProps> = () => {
 
   const handleSaveEdit = (memoNo: number) => {
     axios
-      .put(`http://localhost:8003/workly/api/approvalMemos/updateApprovalReply`, {
+      .put(`${import.meta.env.VITE_API_URL}/workly/api/approvalMemos/updateApprovalReply`, {
         memoNo,
         memoContent: editedContent,
       })

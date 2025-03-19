@@ -41,7 +41,7 @@ export const ApprovalRejectBody = ({
   useEffect(() => {
     const fetchApprovalPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/rejectList/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/rejectList/${userNo}`);
         const filterdPosts = response.data
           .filter((post: any) => post.approvalStatus === 3)
           .map((post: any) => ({
@@ -100,7 +100,7 @@ export const ApprovalRejectBody = ({
     try {
       await Promise.all(
         selectedPosts.map(approvalNo => 
-          axios.delete(`http://localhost:8003/workly/api/approval/deleteApproval/${approvalNo}`)
+          axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/approval/deleteApproval/${approvalNo}`)
         )
       );
       alert("선택한 문서가 삭제되었습니다.");
@@ -122,7 +122,7 @@ const handleRowClick = async (approvalNo: number, event: React.MouseEvent) => {
   }
 
   try {
-    await axios.post(`http://localhost:8003/workly/notifications/read2`, null, {
+    await axios.post(`${import.meta.env.VITE_API_URL}/workly/notifications/read2`, null, {
       params: { approvalNo, userNo },
     });
 

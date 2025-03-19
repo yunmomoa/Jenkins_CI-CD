@@ -20,11 +20,11 @@ const OrgChart = ({ onOpenCreateOrg }: OrgChartProps) => {
     const fetchData = async () => {
       try {
         // ✅ 1. 부서 목록 가져오기
-        const deptResponse = await axios.get("http://localhost:8003/workly/api/chat/departments");
+        const deptResponse = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/departments`);
         const allDepartments: string[] = deptResponse.data;
 
         // ✅ 2. 사원 목록 가져오기
-        const memberResponse = await axios.get("http://localhost:8003/workly/api/chat/members");
+        const memberResponse = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/members`);
         const members: Member[] = memberResponse.data;
 
         // ✅ 3. 부서별 사원 매칭 및 프로필 이미지 추가 (ChatMain과 유사한 방식)
@@ -38,7 +38,7 @@ const OrgChart = ({ onOpenCreateOrg }: OrgChartProps) => {
           members.map(async (member) => {
             try {
               const profileResponse = await axios.get(
-                `http://localhost:8003/workly/api/user/profile/${member.userNo}`
+                `${import.meta.env.VITE_API_URL}/workly/api/user/profile/${member.userNo}`
               );
               return {
                 ...member,

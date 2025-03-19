@@ -27,7 +27,7 @@ const ApprovalLineModal = ({ onClose, setApprovalData }) => {
     // Redux에서 user 정보 가져오기
     const userNo = useSelector((state) => state.user.userNo);
     useEffect(() => {
-        axios.get(`http://localhost:8003/workly/api/approval/getFavoriteLines/${userNo}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/getFavoriteLines/${userNo}`)
             .then((response) => {
             // 데이터를 FAVORITE_NAME 기준으로 그룹화
             const groupedFavorites = groupBy(response.data, "FAVORITE_NAME");
@@ -53,7 +53,7 @@ const ApprovalLineModal = ({ onClose, setApprovalData }) => {
     // ✅ 백엔드에서 직원 목록 가져오기 (axios 사용)
     useEffect(() => {
         axios
-            .get("http://localhost:8003/workly/api/approval/approvalLineList")
+            .get(`${import.meta.env.VITE_API_URL}/workly/api/approval/approvalLineList`)
             .then((response) => {
             console.log("백엔드 응답 데이터:", response.data);
             const filteredEmployees = response.data.filter(emp => emp.COMPANY_ID === companyId);
@@ -79,7 +79,7 @@ const ApprovalLineModal = ({ onClose, setApprovalData }) => {
     };
     // 즐겨찾기 삭제
     const removeFavoriteLine = (favoriteName) => {
-        axios.delete(`http://localhost:8003/workly/api/approval/deleteFavoriteLine`, {
+        axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/approval/deleteFavoriteLine`, {
             params: {
                 userNo,
                 favoriteName: encodeURIComponent(favoriteName)

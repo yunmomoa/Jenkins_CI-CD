@@ -58,14 +58,14 @@ const ChatMain: React.FC<ChatMainProps> = ({
     const fetchMembers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8003/workly/api/chat/members"
+          `${import.meta.env.VITE_API_URL}/workly/api/chat/members`
         );
         // 서버에서 chatStatus, statusType을 함께 내려준다고 가정
         const membersWithProfile = await Promise.all(
           response.data.map(async (member: MemberWithStatus) => {
             try {
               const profileResponse = await axios.get(
-                `http://localhost:8003/workly/api/user/profile/${member.userNo}`
+                `${import.meta.env.VITE_API_URL}/workly/api/user/profile/${member.userNo}`
               );
               return {
                 ...member,
@@ -93,7 +93,7 @@ const ChatMain: React.FC<ChatMainProps> = ({
           dispatch(setFavorites(JSON.parse(localFavorites)));
         }
         const response = await axios.get(
-          `http://localhost:8003/workly/api/chat/favorite/${user.userNo}`
+          `${import.meta.env.VITE_API_URL}/workly/api/chat/favorite/${user.userNo}`
         );
         const dbFavorites = response.data.favorites ?? [];
         dispatch(setFavorites(dbFavorites));
@@ -115,7 +115,7 @@ const ChatMain: React.FC<ChatMainProps> = ({
     try {
       let updatedFavorites = [...favorites, targetUser];
       if (favorites.some((fav) => fav.userNo === targetUser.userNo)) {
-        await axios.delete("http://localhost:8003/workly/api/chat/favorite", {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/chat/favorite`, {
           data: { userNo: user.userNo, favoriteNo: targetUser.userNo },
           headers: { "Content-Type": "application/json" },
         });
@@ -123,7 +123,7 @@ const ChatMain: React.FC<ChatMainProps> = ({
           (fav) => fav.userNo !== targetUser.userNo
         );
       } else {
-        await axios.post("http://localhost:8003/workly/api/chat/favorite", {
+        await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/chat/favorite`, {
           userNo: user.userNo,
           favoriteNo: targetUser.userNo,
         });
@@ -140,7 +140,7 @@ const ChatMain: React.FC<ChatMainProps> = ({
   // 4) 내 프로필 이미지 불러오기
   useEffect(() => {
     axios
-      .get(`http://localhost:8003/workly/api/user/profile/${user.userNo}`)
+      .get(`${import.meta.env.VITE_API_URL}/workly/api/user/profile/${user.userNo}`)
       .then((response) => {
         console.log("📌 서버에서 받은 프로필 이미지:", response.data.profileImg);
         setProfileImage(response.data.profileImg);
@@ -155,7 +155,7 @@ const ChatMain: React.FC<ChatMainProps> = ({
         members.map(async (member) => {
           try {
             const response = await axios.get(
-              `http://localhost:8003/workly/api/user/profile/${member.userNo}`
+              `${import.meta.env.VITE_API_URL}/workly/api/user/profile/${member.userNo}`
             );
             return {
               ...member,
@@ -193,7 +193,7 @@ const ChatMain: React.FC<ChatMainProps> = ({
     try {
       // 6-1) DB 업데이트
       await axios.put(
-        `http://localhost:8003/workly/api/chat/status/${user.userNo}`,
+        `${import.meta.env.VITE_API_URL}/workly/api/chat/status/${user.userNo}`,
         { statusType: newStatusType }
       );
 

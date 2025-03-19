@@ -196,7 +196,7 @@ const Chat = ({ currentUser, onClose }) => {
     }, [selectedChatRoom]);
     const fetchChatMembers = async (chatRoomNo) => {
         try {
-            const response = await axios.get(`http://localhost:8003/workly/api/chat/members/${chatRoomNo}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/members/${chatRoomNo}`);
             setCurrentMembers(response.data);
         }
         catch (error) {

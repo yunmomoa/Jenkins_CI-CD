@@ -26,7 +26,7 @@ const Modal1 = ({ isOpen, onClose, onSave, onDelete, setMeetingRoomEvents, selec
     // 회의실 목록 불러오기 (mrNo 기준 오름차순 정렬)
     useEffect(() => {
         axios
-            .get("http://localhost:8003/workly/meeting-rooms")
+            .get(`${import.meta.env.VITE_API_URL}/workly/meeting-rooms`)
             .then((response) => {
             if (Array.isArray(response.data) && response.data.length > 0) {
                 const sortedData = response.data.sort((a, b) => Number(a.mrNo) - Number(b.mrNo));
@@ -92,12 +92,12 @@ const Modal1 = ({ isOpen, onClose, onSave, onDelete, setMeetingRoomEvents, selec
         try {
             if (selectedEvent && selectedEvent.meetingRoomId !== undefined) {
                 // 예약 수정
-                const response = await axios.put(`http://localhost:8003/workly/meeting-reservation/update/${selectedEvent.id}`, meetingData);
+                const response = await axios.put(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation/update/${selectedEvent.id}`, meetingData);
                 console.log("예약 수정 응답:", response.data);
             }
             else {
                 // 새 예약 추가
-                const response = await axios.post("http://localhost:8003/workly/meeting-reservation/add", meetingData);
+                const response = await axios.post(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation/add`, meetingData);
                 console.log("예약 추가 응답:", response.data);
             }
             // 캘린더에 새로 추가된 예약 데이터 반영
@@ -133,7 +133,7 @@ const Modal1 = ({ isOpen, onClose, onSave, onDelete, setMeetingRoomEvents, selec
             return;
         if (window.confirm(`정말 "${selectedEvent.title}" 회의 예약을 삭제하시겠습니까?`)) {
             try {
-                await axios.delete(`http://localhost:8003/workly/meeting-reservation/delete/${selectedEvent.id}`);
+                await axios.delete(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation/delete/${selectedEvent.id}`);
                 if (setMeetingRoomEvents) {
                     setMeetingRoomEvents((prevMeetings) => prevMeetings.filter((event) => event.id !== selectedEvent.id));
                 }

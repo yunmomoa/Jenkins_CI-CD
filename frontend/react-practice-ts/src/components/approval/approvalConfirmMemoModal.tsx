@@ -12,19 +12,19 @@ export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
   const handleApprove = async () => {
     try{
       // 1. 결재 승인 요청(STATUS 변경)
-      const approvalResponse = await axios.post("http://localhost:8003/workly/api/approval/approve", {
+      const approvalResponse = await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/approve`, {
         approvalNo: approvalNo,
         userNo: userNo,
       })
 
       // 2. 현재 사용자가 마지막 결재자인지 확인
-      const checkFinalApprover = await axios.get(`http://localhost:8003/workly/api/approval/checkFinalApprover`, {
+      const checkFinalApprover = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/checkFinalApprover`, {
         params: {approvalNo: approvalNo},
       })
 
       if (checkFinalApprover.data.isFinalApprover){ // 1이면 최종 승인자
         // 3. 마지막 결재자라면 'APPROVAL_STATUS' 변경 및 'END_DAT' 설정
-        await axios.post("http://localhost:8003/workly/api/approval/updateFinalApproval", {
+        await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/updateFinalApproval`, {
           approvalNo: approvalNo,
         });
       }
@@ -32,7 +32,7 @@ export const ApprovalConfirmMemoModal = ({ onClose, onSave, approvalNo }) => {
       // 4. 메모 저장 요청 (userNo 업데이트 후 실행)
       setTimeout(async () => {
         if (memoContent.trim() !== "") {
-          const memoResponse = await axios.post("http://localhost:8003/workly/api/approvalMemos/create", {
+          const memoResponse = await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approvalMemos/create`, {
             approvalNo: approvalNo,
             userNo: userNo, // 이제 정상적으로 값이 들어감
             memoContent: memoContent,

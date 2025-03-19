@@ -33,7 +33,7 @@ const AddMemberPanel = ({
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get("http://localhost:8003/workly/api/chat/members");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/members`);
         setAllEmployees(response.data);
       } catch (error) {
         console.error("사원 목록 불러오기 실패:", error);
@@ -84,7 +84,7 @@ const AddMemberPanel = ({
     const newUserNos = selectedMembersObjects.map(member => member.userNo);
 
     try {
-      await axios.post("http://localhost:8003/workly/api/chat/addMembers", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/chat/addMembers`, {
         chatRoomNo: room.chatRoomNo,
         userNos: newUserNos,
       });

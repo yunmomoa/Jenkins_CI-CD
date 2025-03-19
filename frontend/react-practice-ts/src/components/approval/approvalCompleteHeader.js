@@ -61,23 +61,23 @@ export const ApprovalCompleteHeader = () => {
     useEffect(() => {
         if (!approvalNo)
             return;
-        const fetchWriteUser = axios.get(`http://localhost:8003/workly/api/approval/getWriteUser`, {
+        const fetchWriteUser = axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/getWriteUser`, {
             params: {
                 approvalNo: approvalNo
             }
         });
-        const fetchApprovalData = axios.get(`http://localhost:8003/workly/api/approval/getApprovalData`, {
+        const fetchApprovalData = axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/getApprovalData`, {
             params: {
                 approvalNo: approvalNo,
             }
         });
-        const fetchApprovalLine = axios.get(`http://localhost:8003/workly/api/approval/getApprovalLine`, {
+        const fetchApprovalLine = axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/getApprovalLine`, {
             params: {
                 approvalNo: approvalNo,
             }
         });
         const fetchAttachments = axios
-            .get(`http://localhost:8003/workly/api/approval/getApprovalAttachments/${approvalNo}`)
+            .get(`${import.meta.env.VITE_API_URL}/workly/api/approval/getApprovalAttachments/${approvalNo}`)
             .catch(() => ({ data: [] })); // 404 에러 시 빈 배열 반환
         Promise.allSettled([fetchWriteUser, fetchApprovalData, fetchApprovalLine, fetchAttachments])
             .then(results => {

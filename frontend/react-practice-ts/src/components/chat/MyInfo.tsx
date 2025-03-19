@@ -31,14 +31,14 @@ const MyInfo = ({ myinfo, onClose }: MyInfoProps) => {
   const fetchProfileImage = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8003/workly/api/user/profile/${myinfo.userNo}`
+        `${import.meta.env.VITE_API_URL}/workly/api/user/profile/${myinfo.userNo}`
       );
       console.log("📌 서버에서 받은 프로필 이미지:", response.data.profileImg);
 
       if (response.data.profileImg) {
         const imageUrl = response.data.profileImg.startsWith("http")
           ? response.data.profileImg
-          : new URL(response.data.profileImg, "http://localhost:8003").href;
+          : new URL(response.data.profileImg, `${import.meta.env.VITE_API_URL}`).href;
 
         setProfileImage(imageUrl);
       } else {
@@ -79,14 +79,14 @@ const MyInfo = ({ myinfo, onClose }: MyInfoProps) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8003/workly/api/user/uploadProfile",
+        `${import.meta.env.VITE_API_URL}/workly/api/user/uploadProfile`,
         formData
       );
       console.log("📌 서버 응답:", response.data);
 
       if (response.data.profileImg) {
         setProfileImage(
-          new URL(response.data.profileImg, "http://localhost:8003").href
+          new URL(response.data.profileImg, `${import.meta.env.VITE_API_URL}`).href
         );
         alert("프로필 이미지가 변경되었습니다.");
       }

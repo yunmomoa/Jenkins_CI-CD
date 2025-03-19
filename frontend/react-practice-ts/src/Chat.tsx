@@ -250,7 +250,7 @@ const Chat: React.FC<ChatProps> = ({ currentUser, onClose }) => {
 
   const fetchChatMembers = async (chatRoomNo: number) => {
     try {
-      const response = await axios.get(`http://localhost:8003/workly/api/chat/members/${chatRoomNo}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/members/${chatRoomNo}`);
       setCurrentMembers(response.data);
     } catch (error) {
       console.error("❌ 채팅방 멤버 불러오기 실패", error);

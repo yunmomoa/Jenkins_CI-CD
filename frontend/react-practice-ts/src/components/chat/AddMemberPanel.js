@@ -13,7 +13,7 @@ const AddMemberPanel = ({ currentMembers, room, onClose, onConfirm, }) => {
     useEffect(() => {
         const fetchEmployees = async () => {
             try {
-                const response = await axios.get("http://localhost:8003/workly/api/chat/members");
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/chat/members`);
                 setAllEmployees(response.data);
             }
             catch (error) {
@@ -50,7 +50,7 @@ const AddMemberPanel = ({ currentMembers, room, onClose, onConfirm, }) => {
         }
         const newUserNos = selectedMembersObjects.map(member => member.userNo);
         try {
-            await axios.post("http://localhost:8003/workly/api/chat/addMembers", {
+            await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/chat/addMembers`, {
                 chatRoomNo: room.chatRoomNo,
                 userNos: newUserNos,
             });

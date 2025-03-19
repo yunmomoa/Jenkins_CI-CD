@@ -16,7 +16,7 @@ const Calendar3 = ({ meetingRoomEvents, setMeetingRoomEvents }) => {
     // 회의실 예약 데이터 불러오기
     useEffect(() => {
         axios
-            .get("http://localhost:8003/workly/meeting-reservation")
+            .get(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation`)
             .then((response) => {
             const formattedEvents = response.data.map((event) => ({
                 id: event.mrResNo?.toString(),
@@ -34,7 +34,7 @@ const Calendar3 = ({ meetingRoomEvents, setMeetingRoomEvents }) => {
     // 회의실 예약 추가
     const handleSaveMeeting = async (newMeeting) => {
         try {
-            await axios.post("http://localhost:8003/workly/meeting-reservation/add", newMeeting);
+            await axios.post(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation/add`, newMeeting);
             setMeetingRoomEvents((prevEvents) => [...prevEvents, newMeeting]); // 새 예약 추가
             // 캘린더 UI 갱신
             if (calendarRef.current) {
@@ -60,7 +60,7 @@ const Calendar3 = ({ meetingRoomEvents, setMeetingRoomEvents }) => {
     // 회의실 예약 수정
     const handleUpdateMeeting = async (updatedMeeting) => {
         try {
-            await axios.put(`http://localhost:8003/workly/meeting-reservation/update/${updatedMeeting.id}`, updatedMeeting);
+            await axios.put(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation/update/${updatedMeeting.id}`, updatedMeeting);
             // 상태 업데이트
             setMeetingRoomEvents((prevEvents) => prevEvents.map((event) => (event.id === updatedMeeting.id ? updatedMeeting : event)) // 예약 수정
             );
@@ -86,7 +86,7 @@ const Calendar3 = ({ meetingRoomEvents, setMeetingRoomEvents }) => {
     // 회의실 예약 삭제
     const handleDeleteMeeting = async (eventId) => {
         try {
-            await axios.delete(`http://localhost:8003/workly/meeting-reservation/delete/${eventId}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation/delete/${eventId}`);
             setMeetingRoomEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId));
             // 캘린더 UI 갱신
             if (calendarRef.current) {
