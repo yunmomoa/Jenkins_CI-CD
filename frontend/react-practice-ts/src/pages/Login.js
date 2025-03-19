@@ -29,7 +29,7 @@ const Login = () => {
         else {
             removeCookie("rememberId");
         }
-        axios.post("http://localhost:8003/workly/login", {
+        axios.post("http://3.34.177.173:8003/workly/login", {
             userNo: userNoAsInt,
             userPwd
         })
