@@ -7,7 +7,6 @@ const RoleRoute= ({roles}) => {
     const user = useSelector((state: any) => state.user);
 
     useEffect(() => {
-        console.log(user);
         if(user.userNo === 0) {
             alert("로그인 후 이용해주세요.");
             navigate("/");
@@ -20,7 +19,6 @@ const RoleRoute= ({roles}) => {
             return;
         }
     }, [])
-
     return <Outlet/>
 }
 
