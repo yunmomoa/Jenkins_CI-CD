@@ -43,8 +43,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginUser } from "./features/userSlice";
 
-
-
 function App() {
   // 전자결재 알림서비스 추가
   const userNo = useSelector((state: RootState) => state.user.userNo);
