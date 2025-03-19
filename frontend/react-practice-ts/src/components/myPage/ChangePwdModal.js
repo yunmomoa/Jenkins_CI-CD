@@ -32,7 +32,7 @@ const ChangePwdModal = ({ setOpenModal }) => {
             return;
         }
         if (confirm("비밀번호를 변경하시겠습니까?")) {
-            axios.put("http://localhost:8003/workly/changePwd", {
+            axios.put(`${import.meta.env.VITE_API_URL}/workly/changePwd`, {
                 userNo: user.userNo,
                 currentPwd,
                 newPwd

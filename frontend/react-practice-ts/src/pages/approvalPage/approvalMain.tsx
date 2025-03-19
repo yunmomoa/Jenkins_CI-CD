@@ -22,7 +22,7 @@ export const ApprovalMain = () => {
   useEffect(() => {
     const fetchApprovalPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/list/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/list/${userNo}`);
 
         if (!response.data || response.data.length === 0) {
           console.warn("✅ 가져온 문서가 없습니다.");

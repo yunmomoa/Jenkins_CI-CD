@@ -30,7 +30,7 @@ const MyLeave = () => {
     };
     useEffect(() => {
         console.log(user);
-        axios.get("http://localhost:8003/workly/myLeave", {
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/myLeave`, {
             params: {
                 year,
                 userNo: user.userNo,

@@ -33,7 +33,7 @@ export const ApprovalRequestPage = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/requests/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/requests/${userNo}`);
         
         //console.log("✅ 요청함함 응답 데이터:", response.data);
 

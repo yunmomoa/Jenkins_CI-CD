@@ -38,7 +38,7 @@ export const ApprovalRejectPage = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/rejectList/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/rejectList/${userNo}`);
         // 상태값이 3인 데이터만 필터링
         const rejectedPosts = response.data.filter((post: any) => post.approvalStatus === 3)
           .map((post: any) => ({
@@ -67,7 +67,7 @@ export const ApprovalRejectPage = () => {
   const handleSearch = (params: any) => {
     const fetchSearchResults = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/rejectList/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/rejectList/${userNo}`);
         // 상태값이 3인 데이터만 필터링
         let result = response.data.filter((post: any) => post.approvalStatus === 3)
           .map((post: any) => ({
@@ -120,7 +120,7 @@ export const ApprovalRejectPage = () => {
     try {
       await Promise.all(
         selectedPosts.map(approvalNo => 
-          axios.delete(`http://localhost:8003/workly/api/approval/deleteApproval/${approvalNo}`)
+          axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/approval/deleteApproval/${approvalNo}`)
         )
       );
       alert("선택한 문서가 삭제되었습니다.");

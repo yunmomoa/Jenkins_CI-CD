@@ -20,7 +20,7 @@ function Header() {
     const { pathname } = location;
     const [openModal, setOpenModal] = useState(false);
     const user = useSelector((state) => state.user);
-    const url = "http://localhost:8003/workly/uploads/profile/";
+    const url = `${import.meta.env.VITE_API_URL}/workly/uploads/profile/`;
     useEffect(() => {
         setPreview(user.changeName);
     }, []);

@@ -64,7 +64,7 @@ const CreateEmployee = () => {
         if (profileImg) {
             formData.append("fileImg", profileImg);
         }
-        await axios.post("http://localhost:8003/workly/enroll", formData)
+        await axios.post(`${import.meta.env.VITE_API_URL}/workly/enroll`, formData)
             .then(response => {
             navigate("/personnel");
             console.log("등록 성공");

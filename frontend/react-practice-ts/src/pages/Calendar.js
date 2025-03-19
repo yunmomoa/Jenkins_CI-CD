@@ -27,7 +27,7 @@ const CalendarPage = () => {
     useEffect(() => {
         if (userNo) {
             axios
-                .get(`http://localhost:8003/workly/memo/${userNo}`)
+                .get(`${import.meta.env.VITE_API_URL}/workly/memo/${userNo}`)
                 .then((response) => {
                 setMemoText(response.data.memo);
             })
@@ -38,7 +38,7 @@ const CalendarPage = () => {
         if (!userNo)
             return;
         axios
-            .put(`http://localhost:8003/workly/memo/update/${userNo}`, { memo: memoText })
+            .put(`${import.meta.env.VITE_API_URL}/workly/memo/update/${userNo}`, { memo: memoText })
             .then((response) => {
             console.log("메모 저장 성공", response.data);
         })
@@ -52,7 +52,7 @@ const CalendarPage = () => {
     // 회의실 예약 저장
     const handleSaveMeeting = async (newMeeting) => {
         try {
-            await axios.post("http://localhost:8003/workly/meeting-reservation/add", newMeeting);
+            await axios.post(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation/add`, newMeeting);
             setMeetingRoomEvents((prevEvents) => [...prevEvents, newMeeting]); // 새 예약 추가
             setMeetingRoomModalOpen(false);
         }
@@ -63,7 +63,7 @@ const CalendarPage = () => {
     // 회의실 예약 삭제
     const handleDeleteMeeting = async (eventId) => {
         try {
-            await axios.delete(`http://localhost:8003/workly/meeting-reservation/delete/${eventId}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation/delete/${eventId}`);
             setMeetingRoomEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId));
             setMeetingRoomModalOpen(false);
         }

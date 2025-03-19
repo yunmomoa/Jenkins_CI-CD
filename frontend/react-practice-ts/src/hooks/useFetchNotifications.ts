@@ -11,9 +11,9 @@ const useFetchNotifications = (userNo: number | undefined) => {
     }
     const fetchUserNotifications = async () => {
       try {
-        //console.log(`API 요청 시작: http://localhost:8003/notifications/${userNo}`);
+        //console.log(`API 요청 시작: ${import.meta.env.VITE_API_URL}/notifications/${userNo}`);
         // 결재 요청, 참조, 수신 API
-        const userStatusResponse = await fetch(`http://localhost:8003/workly/notifications/${userNo}`, {
+        const userStatusResponse = await fetch(`${import.meta.env.VITE_API_URL}/workly/notifications/${userNo}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const useFetchNotifications = (userNo: number | undefined) => {
         // Redux 상태 업데이트 (비동기 Thunk 호출)
         dispatch(fetchNotifications(userNo) as any);
         // 결재 완료, 반려  API
-        const approvalStatusResponse = await fetch(`http://localhost:8003/workly/notifications/approvalStatus/${userNo}`);
+        const approvalStatusResponse = await fetch(`${import.meta.env.VITE_API_URL}/workly/notifications/approvalStatus/${userNo}`);
         if(!approvalStatusResponse.ok){
             throw new Error(`API 오류: ${approvalStatusResponse.status} ${approvalStatusResponse.statusText}`);
         }

@@ -36,7 +36,7 @@ const ManageLeave = () => {
     }
 
     const handleModal = () => {
-        axios.get("http://localhost:8003/workly/memberSearch")
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/memberSearch`)
             .then((response) => {
                 setMemberList(response.data);
             })
@@ -47,7 +47,7 @@ const ManageLeave = () => {
     }
 
     const handleLeaveDetail = () => {
-        axios.get("http://localhost:8003/workly/leaveDetail", {
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/leaveDetail`, {
             params: {
                 userNo: user.userNo,
                 year
@@ -70,7 +70,7 @@ const ManageLeave = () => {
     }
 
     const handleUpdateLeave = () => {
-        axios.put("http://localhost:8003/workly/updateLeave", null, {
+        axios.put(`${import.meta.env.VITE_API_URL}/workly/updateLeave`, null, {
             params: {
                 userNo: user.userNo,
                 year,

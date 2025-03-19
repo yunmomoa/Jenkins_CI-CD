@@ -11,7 +11,7 @@ const MeetingRoom = () => {
     // 회의실 목록 불러오기
     useEffect(() => {
         axios
-            .get('http://localhost:8003/workly/meeting-rooms')
+            .get(`${import.meta.env.VITE_API_URL}/workly/meeting-rooms`)
             .then((response) => {
             setMeetingRooms(response.data);
         })
@@ -25,7 +25,7 @@ const MeetingRoom = () => {
             return;
         }
         axios
-            .get(`http://localhost:8003/workly/meeting-reservation?date=${selectedDate}`)
+            .get(`${import.meta.env.VITE_API_URL}/workly/meeting-reservation?date=${selectedDate}`)
             .then((response) => {
             console.log('📌 가져온 회의실 예약 데이터:', response.data);
             // 예약 데이터를 필터링, 매핑 후 정렬

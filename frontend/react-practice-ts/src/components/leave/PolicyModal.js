@@ -12,7 +12,7 @@ const PolicyModal = ({ setOpenModal, policy, policyDetail, fetchPolicy }) => {
     };
     const handleUpdate = () => {
         console.log(detail);
-        axios.put("http://localhost:8003/workly/updatePolicy", {
+        axios.put(`${import.meta.env.VITE_API_URL}/workly/updatePolicy`, {
             policyNo: detail.policyNo,
             minYear: detail.minYear,
             maxYear: detail.maxYear,

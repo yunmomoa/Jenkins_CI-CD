@@ -31,7 +31,7 @@ const initialState: NotificationState = {
 export const fetchNotifications = createAsyncThunk(
   "notifications/fetchNotifications",
   async (userNo: number) => {
-    const response = await axios.get(`http://localhost:8003/workly/notifications/${userNo}`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/notifications/${userNo}`);
     return response.data;
   }
 );
@@ -39,7 +39,7 @@ export const fetchNotifications = createAsyncThunk(
 export const fetchApprovalStatus = createAsyncThunk(
   "notifications/fetchApprovalStatus",
   async (userNo: number) => {
-    const response = await axios.get(`http://localhost:8003/workly/notifications/approvalStatus/${userNo}`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/notifications/approvalStatus/${userNo}`);
     return response.data;
   }
 );

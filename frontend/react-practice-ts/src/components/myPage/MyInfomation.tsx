@@ -32,7 +32,7 @@ const MyInfomation = () => {
     const [profileImg, setProfileImg] = useState(null); // 프로필 이미지
     const [preview, setPreview] = useState(""); // 프로필 이미지 미리보기
     const fileInputRef = useRef(null);
-    const url = "http://localhost:8003/workly/uploads/profile/";
+    const url = `${import.meta.env.VITE_API_URL}/workly/uploads/profile/`;
 
     const navigate = useNavigate();
 
@@ -85,7 +85,7 @@ const MyInfomation = () => {
                 formData.append("fileImg", profileImg);
             }
 
-            await axios.put("http://localhost:8003/workly/memberUpdate", formData)
+            await axios.put(`${import.meta.env.VITE_API_URL}/workly/memberUpdate`, formData)
                 .then(response => {
                     console.log(response);
                     navigate("/myPage")
@@ -100,7 +100,7 @@ const MyInfomation = () => {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8003/workly/personnelDetail/" + member.userNo)
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/personnelDetail/` + member.userNo)
             .then((response) => {
                 const r = response.data.member
 

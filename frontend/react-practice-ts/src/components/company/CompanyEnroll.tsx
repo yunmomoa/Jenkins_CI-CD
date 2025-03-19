@@ -75,7 +75,7 @@ const CompanyEnroll = () => {
         console.log("전송하는 데이터:", company);
         
         try {
-            const response = await axios.post("http://localhost:8003/workly/api/policies/enroll", company);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/policies/enroll`, company);
             console.log("백엔드 전체 응답:", response);
             console.log("백엔드 응답 데이터:", response.data);
             console.log("백엔드 응답의 companyId:", response.data?.companyId);
@@ -110,7 +110,7 @@ const CompanyEnroll = () => {
             formData.append("fileImg", profileImg);
         }
 
-        await axios.post("http://localhost:8003/workly/enroll", formData)
+        await axios.post(`${import.meta.env.VITE_API_URL}/workly/enroll`, formData)
             .then(response => {
                 navigate("/");
                 alert(response.data.msg);

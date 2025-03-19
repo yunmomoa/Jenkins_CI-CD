@@ -13,12 +13,12 @@ const initialState = {
 };
 // Redux Thunk: 알림 데이터 가져오기 (결재 요청, 참조, 수신)
 export const fetchNotifications = createAsyncThunk("notifications/fetchNotifications", async (userNo) => {
-    const response = await axios.get(`http://localhost:8003/workly/notifications/${userNo}`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/notifications/${userNo}`);
     return response.data;
 });
 // Redux Thunk: 결재완료 및 결재반려 데이터 가져오기
 export const fetchApprovalStatus = createAsyncThunk("notifications/fetchApprovalStatus", async (userNo) => {
-    const response = await axios.get(`http://localhost:8003/workly/notifications/approvalStatus/${userNo}`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/notifications/approvalStatus/${userNo}`);
     return response.data;
 });
 const approvalNotificationsSlice = createSlice({

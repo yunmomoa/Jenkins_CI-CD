@@ -9,7 +9,7 @@ const LeavePolicy = () => {
     const [policyDetail, setPolicyDetail] = useState(0);
 
     const fetchPolicy = () => {
-        axios.get("http://localhost:8003/workly/leavePolicy")
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/leavePolicy`)
             .then((response) => {
                 setPolicy(response.data);
             })

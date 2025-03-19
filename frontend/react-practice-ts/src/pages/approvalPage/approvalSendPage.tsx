@@ -22,7 +22,7 @@ export const ApprovalSendPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8003/workly/api/approval/sendList/${userNo}`
+          `${import.meta.env.VITE_API_URL}/workly/api/approval/sendList/${userNo}`
         );
         console.log(":흰색_확인_표시: 기안함 응답 데이터:", response.data);
         if (Array.isArray(response.data)) {

@@ -15,7 +15,7 @@ const AdminPolicyManager = () => {
     const [originalAnswer, setOriginalAnswer] = useState(""); // 원래 답변 저장
     // 기존 사내 규정 불러오기
     useEffect(() => {
-        axios.get(`http://localhost:8003/workly/api/policies/${companyId}`).then(response => {
+        axios.get(`${import.meta.env.VITE_API_URL}/workly/api/policies/${companyId}`).then(response => {
             setPolicies(response.data);
             setFilteredPolicies(response.data); // 초기값 설정
         });
@@ -32,7 +32,7 @@ const AdminPolicyManager = () => {
     }, [searchTerm, policies]);
     // 사내 규정 저장 또는 수정
     const handleSavePolicy = async () => {
-        await axios.post("http://localhost:8003/workly/api/policies", { companyId, category, question, answer });
+        await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/policies`, { companyId, category, question, answer });
         // 기존 데이터 수정 시 목록 업데이트
         if (editingIndex !== null) {
             const updatedPolicies = [...policies];
@@ -74,7 +74,7 @@ const AdminPolicyManager = () => {
         const policyToDelete = policies[index]; // 삭제할 항목 가져오기
         try {
             // 백엔드에 삭제 요청 보내기
-            await axios.delete(`http://localhost:8003/workly/api/policies/delete/${companyId}`, {
+            await axios.delete(`${import.meta.env.VITE_API_URL}/workly/api/policies/delete/${companyId}`, {
                 data: { question: policyToDelete.question } // 삭제할 데이터 전달 (질문 기준)
             });
             // UI에서도 삭제 반영

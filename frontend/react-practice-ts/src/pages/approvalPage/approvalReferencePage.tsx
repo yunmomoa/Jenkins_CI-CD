@@ -20,7 +20,7 @@ export const ApprovalReferencePage = () => {
   useEffect(() => {
     const fetchApprovalPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/referenceList/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/referenceList/${userNo}`);
 
         if (!response.data || response.data.length === 0) {
           console.warn("✅ 가져온 참조 문서 목록이 없습니다.");

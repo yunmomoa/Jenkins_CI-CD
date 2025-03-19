@@ -20,7 +20,7 @@ export const ApprovalFinishPage = () => {
   useEffect(() => {
     const fetchApprovalPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/workly/api/approval/finishList/${userNo}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approval/finishList/${userNo}`);
 
         if (!response.data || response.data.length === 0) {
           console.warn("✅ 가져온 결재 완료 목록이 없습니다.");

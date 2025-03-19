@@ -15,7 +15,7 @@ export const ApprovalTempUpdatePage = () => {
         if (!parsedTempNo)
             return;
         console.log(`✅ 임시저장 데이터 요청: /api/approvalTemp/${parsedTempNo}`);
-        axios.get(`http://localhost:8003/api/approvalTemp/${parsedTempNo}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/api/approvalTemp/${parsedTempNo}`)
             .then(response => {
             console.log("✅ 불러온 데이터:", response.data);
             setApprovalData(response.data);

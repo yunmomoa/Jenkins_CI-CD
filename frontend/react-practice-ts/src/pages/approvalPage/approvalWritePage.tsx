@@ -59,7 +59,7 @@ export const ApprovalWritePage = () => {
 
       // 1. 결재 문서 저장 요청
       const approvalResponse = await axios.post(
-        "http://localhost:8003/workly/api/approval/submit",
+        `${import.meta.env.VITE_API_URL}/workly/api/approval/submit`,
         finalApprovalData, 
         { headers: { "Content-Type": "application/json" } }
       );
@@ -85,7 +85,7 @@ export const ApprovalWritePage = () => {
         //console.log("휴가 데이터 백엔드 전송:", leaveRequestData);
 
         await axios.post(
-          "http://localhost:8003/workly/api/approval/leaveRequest",
+          `${import.meta.env.VITE_API_URL}/workly/api/approval/leaveRequest`,
           leaveRequestData,
           { headers: { "Content-Type": "application/json" } }
         );
@@ -114,7 +114,7 @@ export const ApprovalWritePage = () => {
         //console.log("전송할 결재라인 데이터:", approvalLineData);
 
         await axios.post(
-          "http://localhost:8003/workly/api/approval/saveApprovalLine",
+          `${import.meta.env.VITE_API_URL}/workly/api/approval/saveApprovalLine`,
           approvalLineData
         );
 
@@ -130,7 +130,7 @@ export const ApprovalWritePage = () => {
         formData.append("approvalNo", newApprovalNo.toString());
 
         await axios.post(
-          "http://localhost:8003/workly/api/approval/attachments",
+          `${import.meta.env.VITE_API_URL}/workly/api/approval/attachments`,
           formData,
           { headers: { "Content-Type": "multipart/form-data" } }
         );

@@ -33,7 +33,7 @@ export const ApprovalProgressPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8003/workly/api/approval/progressList/${userNo}`
+          `${import.meta.env.VITE_API_URL}/workly/api/approval/progressList/${userNo}`
         );
         
         console.log("✅ 진행함 응답 데이터:", response.data);

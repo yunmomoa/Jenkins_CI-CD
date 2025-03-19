@@ -66,7 +66,7 @@ const AIAssistant: React.FC = () => {
 
     try {
       // 사내 규정 가져오기
-      const policyResponse = await axios.get(`http://localhost:8003/workly/api/policies/${companyId}`);
+      const policyResponse = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/policies/${companyId}`);
       const policies = policyResponse.data;
 
       if (!Array.isArray(policies)) {

@@ -21,8 +21,8 @@ export const ApprovalTempPage = () => {
             if (!userNo)
                 return;
             try {
-                console.log("✅ API 요청:", `http://localhost:8003/workly/api/approvalTemp/list/${userNo}`);
-                const response = await axios.get(`http://localhost:8003/workly/api/approvalTemp/list/${userNo}`);
+                console.log("✅ API 요청:", `${import.meta.env.VITE_API_URL}/workly/api/approvalTemp/list/${userNo}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/workly/api/approvalTemp/list/${userNo}`);
                 if (response.status === 200 && Array.isArray(response.data)) {
                     console.log("✅ 데이터 로드 성공:", response.data);
                     setPosts(response.data);

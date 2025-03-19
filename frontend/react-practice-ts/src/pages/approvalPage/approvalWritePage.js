@@ -50,7 +50,7 @@ export const ApprovalWritePage = () => {
             };
             console.log("결재 문서 저장 요청 데이터:", finalApprovalData);
             // 1. 결재 문서 저장 요청
-            const approvalResponse = await axios.post("http://localhost:8003/workly/api/approval/submit", finalApprovalData, { headers: { "Content-Type": "application/json" } });
+            const approvalResponse = await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/submit`, finalApprovalData, { headers: { "Content-Type": "application/json" } });
             // 2️. 저장된 approvalNo 받아오기
             const newApprovalNo = approvalResponse.data?.approvalNo;
             if (!newApprovalNo)
@@ -68,7 +68,7 @@ export const ApprovalWritePage = () => {
                     userNo: userNo,
                 };
                 //console.log("휴가 데이터 백엔드 전송:", leaveRequestData);
-                await axios.post("http://localhost:8003/workly/api/approval/leaveRequest", leaveRequestData, { headers: { "Content-Type": "application/json" } });
+                await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/leaveRequest`, leaveRequestData, { headers: { "Content-Type": "application/json" } });
                 //console.log("휴가 데이터 저장 완료");
             }
             // 4️. 결재라인 저장
@@ -89,7 +89,7 @@ export const ApprovalWritePage = () => {
                     })),
                 ].flat(); // 중첩 배열 평탄화
                 //console.log("전송할 결재라인 데이터:", approvalLineData);
-                await axios.post("http://localhost:8003/workly/api/approval/saveApprovalLine", approvalLineData);
+                await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/saveApprovalLine`, approvalLineData);
                 //console.log("결재라인 저장 완료");
             }
             // 5️. 파일 업로드 처리
@@ -99,7 +99,7 @@ export const ApprovalWritePage = () => {
                     formData.append("files", file);
                 });
                 formData.append("approvalNo", newApprovalNo.toString());
-                await axios.post("http://localhost:8003/workly/api/approval/attachments", formData, { headers: { "Content-Type": "multipart/form-data" } });
+                await axios.post(`${import.meta.env.VITE_API_URL}/workly/api/approval/attachments`, formData, { headers: { "Content-Type": "multipart/form-data" } });
                 //console.log("파일 업로드 성공");
             }
             alert("결재 상신 완료");

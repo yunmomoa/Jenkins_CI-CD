@@ -15,10 +15,6 @@ const Category = () => {
             className={`${styles.button} ${location.pathname === "/personnel/createEmployee" ? styles.activeButton : ""}`}
             onClick={() => navigate("/personnel/createEmployee")}
             >사원생성</button>
-            {/* <button 
-            className={`${styles.button} ${location.pathname === "/personnel/managePermissions" ? styles.activeButton : ""}`}
-            onClick={() => navigate("/personnel/managePermissions")}
-            >권한관리</button> */}
         </div>
     )
 }
