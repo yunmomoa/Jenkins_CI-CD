@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,10 +38,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("http://3.34.177.173")
+@CrossOrigin(origins= "${front.url}")
 public class MemberController {
 	
 	private final MemberService service;
+    
+	@Value("${front.url}")
+    private String frontUrl;
 	
 	@GetMapping("/personnel")
 	public MemberListDTO selectSearchMemberList(
