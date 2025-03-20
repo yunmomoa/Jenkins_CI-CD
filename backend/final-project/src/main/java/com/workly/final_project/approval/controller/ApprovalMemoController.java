@@ -21,7 +21,7 @@ import com.workly.final_project.approval.model.vo.ApprovalMemo;
 
 @RestController
 @RequestMapping("/api/approvalMemos")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins= "${front.url}")
 public class ApprovalMemoController {
 
     @Autowired

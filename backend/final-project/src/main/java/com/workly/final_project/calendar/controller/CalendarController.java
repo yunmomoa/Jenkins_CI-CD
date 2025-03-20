@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping // ✅ 전체 API 기본 경로 변경
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin(origins= "${front.url}")
 public class CalendarController {
 
     private final CalendarService calendarService;

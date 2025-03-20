@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin(origins= "${front.url}")
 @RequiredArgsConstructor
 public class MeetingReservationController {
 

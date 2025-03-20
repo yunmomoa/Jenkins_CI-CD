@@ -21,7 +21,7 @@ import com.workly.final_project.ai.model.vo.CompanyPolicy;
 
 @RestController
 @RequestMapping("/api/policies")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins= "${front.url}")
 public class CompanyPolicyController {
 	
 	@Autowired

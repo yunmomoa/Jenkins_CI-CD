@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/organization")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin(origins= "${front.url}")
 public class OrganizationController {
 
     private final OrganizationService organizationService;

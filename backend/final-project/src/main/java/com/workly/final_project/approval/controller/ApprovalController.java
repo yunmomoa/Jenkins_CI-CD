@@ -27,7 +27,7 @@ import com.workly.final_project.leave.model.vo.LeaveHistory;
 
 @RestController
 @RequestMapping("/api/approval")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins= "${front.url}")
 public class ApprovalController {
 	
 	@Autowired

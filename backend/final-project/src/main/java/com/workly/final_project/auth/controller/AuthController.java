@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,9 +32,6 @@ public class AuthController {
 	private final JwtTokenProvider jwtProvider;
 	private final AuthService service;
 	private final EmailService emailService;
-	
-	@Value("${front.url}")
-    private String frontUrl;
 	
 	@PostMapping("/login")
 	public ResponseEntity<HashMap<String, Object>> login(

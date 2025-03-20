@@ -15,7 +15,7 @@ import com.workly.final_project.approval.model.service.ApprovalAttachmentService
 
 @RestController
 @RequestMapping("/api/approval/attachments")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins= "${front.url}")
 public class ApprovalAttachmentController {
 
     @Autowired

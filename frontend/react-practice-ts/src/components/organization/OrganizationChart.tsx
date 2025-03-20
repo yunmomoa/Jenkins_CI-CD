@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import styles from "./OrganizationChart.module.css";
 
 // 백엔드에서 업로드된 프로필 이미지가 위치하는 기본 URL
-const baseProfileUrl = "http://localhost:8003/workly";
+const baseProfileUrl = `${import.meta.env.VITE_API_URL}/workly`;
 
 // 백엔드에서 내려오는 데이터 구조
 interface MemberMap {
@@ -61,7 +61,7 @@ const OrganizationChart: React.FC = () => {
   // 3) 백엔드에서 조직도(Map) 데이터 가져오기
   useEffect(() => {
     axios
-      .get("http://localhost:8003/workly/organization/map")
+      .get(`${import.meta.env.VITE_API_URL}/workly/organization/map`)
       .then((response) => {
         setDepartments(response.data);
       })

@@ -15,7 +15,7 @@ import com.workly.final_project.approval.model.vo.ApprovalTemp;
 
 @RestController
 @RequestMapping("/api/approvalTemp")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins= "${front.url}")
 public class ApprovalTempController {
 
     private static final Logger log = LoggerFactory.getLogger(ApprovalTempController.class);
