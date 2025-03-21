@@ -63,9 +63,6 @@ public class ChatController {
 		        return ResponseEntity.status(500).body("즐겨찾기 추가 실패: " + e.getMessage());
 		    }
 		}
-
-
-
 		
 		// 즐겨찾기 리스트 목록
 		@GetMapping("/favorite/{userNo}")
