@@ -29,7 +29,11 @@ const Weather = () => {
         });
     };
     const getForecast = async (lat, lon) => {
-        await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`)
+        await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0'
+              }
+        })
             .then((res) => {
             const list = res.data.list;
             // dt_txt 09시가 한국시간으로 18시 -> 9시간 시차  => 한국 시간 15시 = 06시
@@ -57,7 +61,9 @@ const Weather = () => {
     };
     const getWeather = async (lat, lon) => {
         try {
-            const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+            const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`, headers: {
+                'User-Agent': 'Mozilla/5.0'
+              });
             const weatherId = res.data.weather[0].id;
             const weatherKo = weatherDescKo[weatherId]; // id 찾아서 매칭 후 description 한글 번역
             const weatherIcon = res.data.weather[0].icon;
