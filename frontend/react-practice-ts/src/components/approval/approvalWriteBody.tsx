@@ -9,7 +9,7 @@ const ApprovalWriteBody = ({ approvalData, setApprovalData }) => {
   const [editorContent, setEditorContent] = useState(approvalData.approvalContent || "");
 
   useEffect(() => {
-    setApprovalData((prevDataL) => ({
+    setApprovalData((prevData) => ({
       ...prevData,
       approvalContent: editorContent,
     }));

@@ -6,7 +6,7 @@ const ApprovalWriteBody = ({ approvalData, setApprovalData }) => {
     // 에디터의 초기 값 설정
     const [editorContent, setEditorContent] = useState(approvalData.approvalContent || "");
     useEffect(() => {
-        setApprovalData((prevDataL) => ({
+        setApprovalData((prevData) => ({
             ...prevData,
             approvalContent: editorContent,
         }));
