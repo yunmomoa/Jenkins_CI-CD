@@ -4,7 +4,7 @@ import weatherDescKo from "./weatherDescKo";
 import styles from '../../styles/mainpage/Weather.module.css';
 import windImg from "../../assets/images/icon/wind.png";
 import feelTempImg from "../../assets/images/icon/feelTemp.png";
-import {PacmanLoader} from "react-spinners";
+import { PacmanLoader } from "react-spinners";
 
 const Weather = () => {
     const API_KEY = import.meta.env.VITE_WEATHER_KEY;
@@ -21,63 +21,68 @@ const Weather = () => {
 
     const getCurrentLocation = () => {
         navigator.geolocation.getCurrentPosition((position) => {
-            // let lat = position.coords.latitude;
-            // let lon = position.coords.longitude;
-            let lat = "37.5683"; // 서울 좌표
-            let lon = "126.9778"; // 서울 좌표
+            console.log("GetCurrentLocation 실행");
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+            // let lat = "37.5683"; // 서울 좌표
+            // let lon = "126.9778"; // 서울 좌표
+            console.log("getWeather 호출")
             getWeather(lat, lon);
+            console.log("getForecast 호출")
             getForecast(lat, lon);
         })
     }
 
     const getForecast = async (lat, lon) => {
+        console.log("getForecast 실행 lat: ", lat);
         await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`, {
             headers: {
                 'User-Agent': 'Mozilla/5.0'
-              }
+            }
         })
             .then((res) => {
-            const list = res.data.list;
-            
-            // dt_txt 09시가 한국시간으로 18시 -> 9시간 시차  => 한국 시간 15시 = 06시
-            let filteredList = list.filter(data =>
-                data.dt_txt.includes("06:00:00")
-            )
+                console.log("getForecast res: ", res);
+                const list = res.data.list;
 
-            // 필요한 데이터만 매핑
-            const data = filteredList.map(data => {
-                const timeStamp = new Date(data.dt * 1000);
-                const day = timeStamp.toString().split(" ")[0]; // 요일 추출
-                
-                const time = timeStamp.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" });
-                const parts = time.split(".");
-                const month = parts[1].trim(); 
-                const day2 = parts[2].trim().split(" ")[0]; 
-                const date = `${month}/${day2}`; // 월/일 형식 추출
+                // dt_txt 09시가 한국시간으로 18시 -> 9시간 시차  => 한국 시간 15시 = 06시
+                let filteredList = list.filter(data =>
+                    data.dt_txt.includes("06:00:00")
+                )
 
-                return{
-                    day,
-                    date,
-                    maxTemp: Math.round(data.main.temp_max),
-                    icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-                }
-            }) 
-            setForecast(data);
-        })
-        .catch(err => console.log(err))
-        .finally(() => setIsLoading(false));
+                // 필요한 데이터만 매핑
+                const data = filteredList.map(data => {
+                    const timeStamp = new Date(data.dt * 1000);
+                    const day = timeStamp.toString().split(" ")[0]; // 요일 추출
+
+                    const time = timeStamp.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" });
+                    const parts = time.split(".");
+                    const month = parts[1].trim();
+                    const day2 = parts[2].trim().split(" ")[0];
+                    const date = `${month}/${day2}`; // 월/일 형식 추출
+
+                    return {
+                        day,
+                        date,
+                        maxTemp: Math.round(data.main.temp_max),
+                        icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+                    }
+                })
+                setForecast(data);
+            })
+            .catch(err => console.log(err))
+            .finally(() => setIsLoading(false));
     }
 
     const getWeather = async (lat, lon) => {
         try {
             const res = await axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-            , {
-                headers: {
-                    'User-Agent': 'Mozilla/5.0'
-                  }
-            });
-            
+                , {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0'
+                    }
+                });
+                console.log("getWeather res: ", res);
             const weatherId = res.data.weather[0].id;
             const weatherKo = weatherDescKo[weatherId]; // id 찾아서 매칭 후 description 한글 번역
 
@@ -106,6 +111,8 @@ const Weather = () => {
     };
 
     useEffect(() => {
+        console.log("API KEY 확인: ", API_KEY);
+        console.log("useEffect geolocation 실행");
         getCurrentLocation()
     }, []);
 
@@ -117,44 +124,44 @@ const Weather = () => {
             </div>
             {isLoading ? (
                 <div className={styles.loadingContainer}>
-                    <PacmanLoader      
+                    <PacmanLoader
                         color="#4A90E2"
                         cssOverride={{
                             transform: "translate(-50%,-50%)",
-                        }}/>  
+                        }} />
                 </div>
             ) : (
-            <div className={styles.weatherContainer}>
-                <div className={styles.currentWeather}>
-                    <div className={styles.simple}>
-                        <img src={weather.icon} className={styles.icon} alt="weatherIcon" />
-                        <div className={styles.temperature}>{weather.temp}°</div>
-                    </div>
-                    <span className={styles.description}>{weather.description}</span>
-                    <div className={styles.details}>
-                        <div className={styles.windSection}>
-                            <img src={windImg} className={styles.windImg} alt="wind-Img"/>
-                            <span>{weather.windSpeed}m/s</span>
+                <div className={styles.weatherContainer}>
+                    <div className={styles.currentWeather}>
+                        <div className={styles.simple}>
+                            <img src={weather.icon} className={styles.icon} alt="weatherIcon" />
+                            <div className={styles.temperature}>{weather.temp}°</div>
                         </div>
-                        <div className={styles.windSection}>
-                            <img src={feelTempImg} className={styles.windImg} alt="feels-like-temp" />
-                            <span>{weather.feelsTemp}°</span>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.forecast}>
-                    { forecast.map((e, i) => (
-                        <div key={i} className={styles.day}>
-                            <div className={styles.datSection}>
-                                <div className={styles.forecastDay}>{e.day}</div>
-                                <div className={styles.forecastDate}>{e.date}</div>
+                        <span className={styles.description}>{weather.description}</span>
+                        <div className={styles.details}>
+                            <div className={styles.windSection}>
+                                <img src={windImg} className={styles.windImg} alt="wind-Img" />
+                                <span>{weather.windSpeed}m/s</span>
                             </div>
-                            <div><img src={e.icon} className={styles.forecastIcon} alt="weather-icon" /></div>
-                            <div className={styles.max}>{e.maxTemp}°</div>
+                            <div className={styles.windSection}>
+                                <img src={feelTempImg} className={styles.windImg} alt="feels-like-temp" />
+                                <span>{weather.feelsTemp}°</span>
+                            </div>
                         </div>
-                    ))}
+                    </div>
+                    <div className={styles.forecast}>
+                        {forecast.map((e, i) => (
+                            <div key={i} className={styles.day}>
+                                <div className={styles.datSection}>
+                                    <div className={styles.forecastDay}>{e.day}</div>
+                                    <div className={styles.forecastDate}>{e.date}</div>
+                                </div>
+                                <div><img src={e.icon} className={styles.forecastIcon} alt="weather-icon" /></div>
+                                <div className={styles.max}>{e.maxTemp}°</div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
             )}
         </div>
     )
