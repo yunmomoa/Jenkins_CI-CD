@@ -19,19 +19,17 @@ const Weather = () => {
     });
     const [forecast, setForecast] = useState([]);
     const getCurrentLocation = () => {
-        navigator.geolocation.getCurrentPosition((position) => {
+        // navigator.geolocation.getCurrentPosition((position) => {
             console.log("GetCurrentLocation 실행");
-            console.log("lat 정보: ", position.coords.latitude)
-            console.log("lon 정보: ", position.coords.longitude)
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
-            // let lat = "37.5683"; // 서울 좌표
-            // let lon = "126.9778"; // 서울 좌표
+            // let lat = position.coords.latitude;
+            // let lon = position.coords.longitude;
+            let lat = "37.5683"; // 서울 좌표
+            let lon = "126.9778"; // 서울 좌표
             console.log("getWeather 호출")
             getWeather(lat, lon);
             console.log("getForecast 호출")
             getForecast(lat, lon);
-        });
+        // });
     };
     const getForecast = async (lat, lon) => {
         console.log("getForecast 실행 lat: ", lat);
