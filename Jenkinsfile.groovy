@@ -19,8 +19,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'chmod +x backend/final-project/mvnw'
-                sh './backend/final-project/mvnw clean package'
+                dir('backend/final-project') {
+                    sh 'chmod +x mvnw'
+                    sh './mvnw clean package'
+                }
             }
         }        // 추후 프론트 빌드 추가해야댐
         stage('Docker Image Build') {
