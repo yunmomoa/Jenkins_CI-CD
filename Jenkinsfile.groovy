@@ -19,6 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'chmod +x backend/final-project/mvnw'
                 sh './backend/final-project/mvnw clean package'
             }
         }        // 추후 프론트 빌드 추가해야댐
