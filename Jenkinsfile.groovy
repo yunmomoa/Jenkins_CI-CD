@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh './mvnw clean package'
+                sh './backend/final-project/mvnw clean package'
             }
         }        // 추후 프론트 빌드 추가해야댐
         stage('Docker Image Build') {
