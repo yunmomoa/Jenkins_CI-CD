@@ -1,30 +1,25 @@
+# Stage 1: Frontend Build
+FROM node:22 as frontend-build
+WORKDIR /app
+COPY frontend/react-practice-ts ./
+RUN npm install
+RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
 
-# 실행용 최종 이미지
-FROM openjdk:17
+# Stage 2: Backend Build
+FROM maven:3.8.5-openjdk-17 as backend-build
+WORKDIR /app
+COPY backend/final-project ./
+RUN mvn clean package -DskipTests
+
+# Stage 3: Final Image
+FROM openjdk:17-slim
 WORKDIR /app
 
-# 빌드된 백엔드 jar 파일
-COPY backend/final-project/target/final-project-0.0.1-SNAPSHOT.jar /app/final-project.jar
+COPY --from=backend-build /app/target/*.jar ./final-project.jar
+COPY --from=frontend-build /app/dist ./frontend
 
-# 빌드된 프론트엔드 정적 파일
-COPY frontend/react-practice-ts/dist ./frontend
-
-# Nginx 설치
 RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
-
-# Nginx 설정 복사
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Docker 이미지 라벨
-LABEL maintainer="yunseong<cysbunker1202@naver.com>" \
-      title="final-project" \
-      version="$VERSION" \
-      description="그룹웨어 서비스"
-
-# 포트 및 환경변수
-ENV APP_HOME /app
 EXPOSE 80 8080
-VOLUME /app/upload
-
-# 컨테이너 실행 시: Nginx + Spring Boot 실행
 CMD service nginx start && java -jar final-project.jar

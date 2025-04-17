@@ -17,15 +17,12 @@ pipeline {
             }
         }
 
-        stage('Frontend Build') {
-            steps {
-                dir('frontend/react-practice-ts') {
-                    sh 'npm install'
-                    sh 'NODE_OPTIONS="--max-old-space-size=2048" npm run build'
-                }
-            }
-        }
-
+    	// npm run build 삭제
+	stage('Frontend Build') {
+  	    steps {
+	        echo '프론트 빌드는 Dockerfile에서 처리'
+	    }
+	}
         stage('Backend Build') {
             steps {
                 dir('backend/final-project') {
