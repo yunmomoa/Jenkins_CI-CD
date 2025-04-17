@@ -6,7 +6,7 @@ pipeline {
     agent any
     environment {
         strDockerTag = "${TODAY}_${BUILD_ID}"
-        strDockerImage ="cysbunker/WorklyProject:${strDockerTag}"
+        strDockerImage ="cysbunker/worklyproject:${strDockerTag}"
         //strGitUrl = "https://github.com/wombathero999/semi.git"
         strGitUrl = "https://github.com/yunmomoa/FinalWorkspace.git"
     }
@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'Yunseong-2', url:"${strGitUrl}"
+                git branch: 'main', url:"${strGitUrl}"
             }
         }
         stage('Build') {
@@ -46,11 +46,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    docker container rm -f WorklyProject || true
+                    docker container rm -f worklyproject || true
                     docker container run \
                         -d \
                         -p 8003:8003 \
-                        --name=WorklyProject \
+                        --name=worklyproject \
                         -e ORACLE_IP=13.209.197.216 \
                         -e ORACLE_PORT=1521 \
                         -e ORACLE_SID=XE \

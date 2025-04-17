@@ -1,13 +1,13 @@
-FROM openjdk:8
+FROM openjdk:17
 
 ARG VERSION
-# 빌드 완료한 jar파일
-COPY target/final-project-0.0.1-SNAPSHOT.jar /app/final-project-0.0.1-SNAPSHOT.jar
+# 빌드 완료한 jar파일 zz
+COPY backend/final-project/target/final-project-0.0.1-SNAPSHOT.jar /app/final-project.jar
 
 LABEL maintainer="yunseong<cysbunker1202@naver.com>" \
-      title="WorklyProject" \
+      title="final-project" \
       version="$VERSION" \
-      description="WokrlyProject"
+      description="그룹웨어 서비스"
 
 ENV APP_HOME /app
 EXPOSE 8080
@@ -15,4 +15,4 @@ VOLUME /app/upload
 
 WORKDIR $APP_HOME
 ENTRYPOINT ["java"]
-CMD ["-jar", "final-project-0.0.1-SNAPSHOT.jar"]
+CMD ["-jar", "final-project.jar"]
