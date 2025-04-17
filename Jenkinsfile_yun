@@ -21,7 +21,7 @@ pipeline {
             steps {
                 dir('frontend/react-practice-ts') {
                     sh 'npm install'
-                    sh 'NODE_OPTIONS="--max-old-space-size=4096" npm run build'
+                    sh 'NODE_OPTIONS="--max-old-space-size=2048" npm run build'
                 }
             }
         }
