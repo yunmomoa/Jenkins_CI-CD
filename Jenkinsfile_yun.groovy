@@ -8,7 +8,7 @@ pipeline {
         strDockerTag = "${TODAY}_${BUILD_ID}"
         strDockerImage ="cysbunker/worklyproject:${strDockerTag}"
         //strGitUrl = "https://github.com/wombathero999/semi.git"
-        strGitUrl = "https://github.com/yunmomoa/FinalWorkspace.git"
+        strGitUrl = "https://github.com/yunmomoa/Jenkins_CI-CD.git"
     }
 
     stages {
